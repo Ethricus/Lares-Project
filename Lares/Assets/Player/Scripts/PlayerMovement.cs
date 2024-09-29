@@ -16,26 +16,31 @@ namespace Lares
         [SerializeField] float jumpForce;
         [SerializeField] float rotationSpeed;
 
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _input = GetComponent<PlayerInput>();
-           
+
             _input.currentActionMap.FindAction("MovePlayer").performed += MoveStart;
             _input.currentActionMap.FindAction("MovePlayer").canceled += MoveEnd;
             _input.currentActionMap.FindAction("Jump").performed += Jump;
             _input.currentActionMap.FindAction("Interact").performed += Interact;
             _input.currentActionMap.FindAction("Evade").performed += Evade;
         }
-        
+
         #region move player
         void MoveStart(InputAction.CallbackContext context)
         {
             Vector2 movementInput = context.ReadValue<Vector2>();
+
             moveDirection = new Vector3(movementInput.x, 0f, movementInput.y).normalized;
+
+            moveDirection = new Vector3(movementInput.x, 0f, movementInput.y);
+
             if (_moveCoroutine == null) { StartCoroutine(Move()); }
-            
+
         }
 
         void MoveEnd(InputAction.CallbackContext context)
@@ -57,8 +62,9 @@ namespace Lares
                 yield return new WaitForFixedUpdate();
             }
             //_rigidbody.maxAngularVelocity = _rigidbody.maxAngularVelocity / 1.5f;
-        }
 
+        }
+    
         #endregion
 
         #region Jump
