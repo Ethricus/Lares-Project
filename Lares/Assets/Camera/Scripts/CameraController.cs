@@ -6,17 +6,21 @@ namespace Lares.Camera.Scripts
     //Determine if Camera is in correct position
     //Raycast between Camera and center, ignore the player somehow
     
-    [RequireComponent(typeof(PlayerControls))]
+    [RequireComponent(typeof(PlayerInput))]
     public class CameraController : MonoBehaviour
     {
         [Header("Objects")]
         [SerializeField] private UnityEngine.Camera _camera;
 
         [Header("Camera Settings")] 
-        [SerializeField] private Vector3 _cameraCenter;
         [SerializeField] private Vector2 _cameraOffset;
         [SerializeField] private float _distanceFromCenter;
+        
+        [Header("Input Settings")]
+        [SerializeField, Range(0.01f, 2f)] private float _mouseSensitivity = 1f;
+        [SerializeField, Range(0.01f, 2f)] private float _controllerSensitivity = 1f;
 
+        private PlayerInput _playerInput;
         private PlayerControls _playerControls;
 
         private Vector2 _inputVector;
@@ -28,9 +32,10 @@ namespace Lares.Camera.Scripts
 
         private void Start()
         {
-            transform.localPosition = _cameraCenter;
             transform.localRotation = Quaternion.identity;
             _camera.transform.localPosition = new Vector3(_cameraOffset.x, _cameraOffset.y, -_distanceFromCenter);
+            
+            _playerInput = GetComponent<PlayerInput>();
         }
         
         private void OnEnable()
@@ -50,14 +55,23 @@ namespace Lares.Camera.Scripts
         
         private void LateUpdate()
         {
-            if (transform.localPosition != _cameraCenter)
+            if (_camera.transform.localPosition != (Vector3)_cameraOffset)
             {
-                transform.localPosition = _cameraCenter;
                 _camera.transform.localPosition = new Vector3(_cameraOffset.x, _cameraOffset.y, -_distanceFromCenter);
             }
             
             if (_inputVector == Vector2.zero)
                 return;
+
+            switch (_playerInput.currentControlScheme)
+            {
+                case "Controller":
+                    _inputVector *= _controllerSensitivity;
+                    break;
+                case "Keyboard and Mouse":
+                    _inputVector *= _mouseSensitivity;
+                    break;
+            }
 
             Vector3 currentRotation = transform.localEulerAngles;
             currentRotation.x += _inputVector.y;
