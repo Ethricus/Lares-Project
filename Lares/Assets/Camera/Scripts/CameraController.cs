@@ -10,69 +10,92 @@ namespace Lares.Camera.Scripts
     {
         [Header("Objects")]
         [SerializeField] private UnityEngine.Camera _camera;
+        [SerializeField] private PlayerInput _playerInput;
 
         [Header("Camera Settings")] 
-        [SerializeField] private Vector3 _cameraCenter;
         [SerializeField] private Vector2 _cameraOffset;
         [SerializeField] private float _distanceFromCenter;
+        
+        [Header("Input Settings")]
+        [SerializeField, Range(0.01f, 2f)] private float _mouseSensitivity = 1f;
+        [SerializeField, Range(0.01f, 2f)] private float _controllerSensitivity = 1f;
 
+        
         private PlayerControls _playerControls;
 
         private Vector2 _inputVector;
 
         private void Awake()
         {
-            if (!Application.isPlaying) return;
-
             _playerControls = new PlayerControls();
+
+            if (!_playerInput)
+                Debug.LogError("Player Input not found!");
         }
 
         private void Start()
         {
-            transform.localPosition = _cameraCenter;
+            transform.localRotation = Quaternion.identity;
             _camera.transform.localPosition = new Vector3(_cameraOffset.x, _cameraOffset.y, -_distanceFromCenter);
         }
         
         private void OnEnable()
         {
-            if (!Application.isPlaying) return;
-
             _playerControls.Enable();
             _playerControls.BaseControls.MoveCamera.performed += OnMoveCameraPerformed;
+            _playerControls.BaseControls.MoveCamera.canceled += OnMoveCameraCanceled;
         }
 
         private void OnDisable()
         {
-            if (!Application.isPlaying) return;
-            
-            _playerControls.Disable();
             _playerControls.BaseControls.MoveCamera.performed -= OnMoveCameraPerformed;
+            _playerControls.BaseControls.MoveCamera.canceled -= OnMoveCameraCanceled;
+
+            _playerControls.Disable();
         }
         
         private void LateUpdate()
         {
-            if (!Application.isPlaying) return;
-         
-            transform.localPosition = _cameraCenter;
-            _camera.transform.localPosition = new Vector3(_cameraOffset.x, _cameraOffset.y, -_distanceFromCenter);
-            
-            _inputVector.y = Mathf.Clamp(_inputVector.y, -90f, 90);
-            switch (_inputVector.x)
+            if (_camera.transform.localPosition != (Vector3)_cameraOffset)
             {
-                case >= 360f:
-                    _inputVector.x -= 360f;
-                    break;
-                case <= -360f:
-                    _inputVector.x += 360f;
-                    break;
+                _camera.transform.localPosition = new Vector3(_cameraOffset.x, _cameraOffset.y, -_distanceFromCenter);
             }
             
-            transform.localRotation = Quaternion.Euler(_inputVector.y, -_inputVector.x, 0);
-        }
+            if (_inputVector == Vector2.zero)
+                return;
 
+            switch (_playerInput.currentControlScheme)
+            {
+                case "Controller":
+                    _inputVector *= _controllerSensitivity;
+                    break;
+                case "Keyboard and Mouse":
+                    _inputVector *= _mouseSensitivity;
+                    break;
+            }
+
+            Vector3 currentRotation = transform.localEulerAngles;
+            currentRotation.x += _inputVector.y;
+            currentRotation.y -= _inputVector.x;
+            
+            currentRotation.x = currentRotation.x switch
+            {
+                >= 180f and < 270f => 270f,
+                > 90f and < 180f => 90f,
+                _ => currentRotation.x
+            };
+
+            transform.localRotation = Quaternion.Euler(currentRotation);
+        }
+        
         private void OnMoveCameraPerformed(InputAction.CallbackContext context)
         {
-            _inputVector += context.ReadValue<Vector2>();
+            _inputVector = context.ReadValue<Vector2>();
+        }
+
+        private void OnMoveCameraCanceled(InputAction.CallbackContext context)
+        {
+            _inputVector = Vector2.zero;
         }
     }
 }

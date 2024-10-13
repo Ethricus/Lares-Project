@@ -49,7 +49,9 @@ MonoBehaviour:
   _camera: {fileID: 3085492360813940509}
   _cameraCenter: {x: 0, y: 0, z: 0}
   _cameraOffset: {x: 0, y: 0}
-  _distanceFromCenter: 0
+  _distanceFromCenter: 3
+  _mouseSensitivity: 1
+  _controllerSensitivity: 1
 --- !u!114 &6797900550905813070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +80,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 52975b73-2aa1-4539-89d0-52d2579b712a
+  m_DefaultActionMap: BaseControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &7343679560158206760
@@ -109,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 7343679560158206760}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
