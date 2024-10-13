@@ -1,8 +1,7 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-namespace Lares
+namespace Lares.Player.Scripts
 {
     public class PlayerAnimation : MonoBehaviour
     {
