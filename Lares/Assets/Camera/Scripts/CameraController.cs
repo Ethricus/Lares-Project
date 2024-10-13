@@ -6,11 +6,11 @@ namespace Lares.Camera.Scripts
     //Determine if Camera is in correct position
     //Raycast between Camera and center, ignore the player somehow
     
-    [RequireComponent(typeof(PlayerInput))]
     public class CameraController : MonoBehaviour
     {
         [Header("Objects")]
         [SerializeField] private UnityEngine.Camera _camera;
+        [SerializeField] private PlayerInput _playerInput;
 
         [Header("Camera Settings")] 
         [SerializeField] private Vector2 _cameraOffset;
@@ -20,7 +20,7 @@ namespace Lares.Camera.Scripts
         [SerializeField, Range(0.01f, 2f)] private float _mouseSensitivity = 1f;
         [SerializeField, Range(0.01f, 2f)] private float _controllerSensitivity = 1f;
 
-        private PlayerInput _playerInput;
+        
         private PlayerControls _playerControls;
 
         private Vector2 _inputVector;
@@ -28,14 +28,15 @@ namespace Lares.Camera.Scripts
         private void Awake()
         {
             _playerControls = new PlayerControls();
+
+            if (!_playerInput)
+                Debug.LogError("Player Input not found!");
         }
 
         private void Start()
         {
             transform.localRotation = Quaternion.identity;
             _camera.transform.localPosition = new Vector3(_cameraOffset.x, _cameraOffset.y, -_distanceFromCenter);
-            
-            _playerInput = GetComponent<PlayerInput>();
         }
         
         private void OnEnable()
