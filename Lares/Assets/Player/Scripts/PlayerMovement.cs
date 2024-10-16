@@ -48,18 +48,22 @@ namespace Lares.Player.Scripts
 
         private IEnumerator Move()
         {
+            GameObject rotPoint = transform.GetChild(0).gameObject;
             GameObject model = transform.GetChild(1).gameObject;
 
             while (_moveDirection != Vector3.zero)
             {
+                rotPoint.transform.rotation = Quaternion.Slerp(rotPoint.transform.rotation,
+                    Quaternion.Euler(0, _cameraTransform.rotation.eulerAngles.y, 0), _rotationSpeed);    
+
+                _rigidbody.AddForce(rotPoint.transform.forward * (_moveDirection.z * _movementForce * Time.fixedDeltaTime),
+                    ForceMode.VelocityChange);
+                _rigidbody.AddForce(rotPoint.transform.right * (_moveDirection.x * _movementForce * Time.fixedDeltaTime),
+                    ForceMode.VelocityChange);
+
                 model.transform.rotation = Quaternion.Slerp(model.transform.rotation,
-                    Quaternion.Euler(0, _cameraTransform.rotation.eulerAngles.y, 0), _rotationSpeed);
-                
-                _rigidbody.AddForce(model.transform.forward * (_moveDirection.z * _movementForce * Time.fixedDeltaTime),
-                    ForceMode.VelocityChange);
-                _rigidbody.AddForce(model.transform.right * (_moveDirection.x * _movementForce * Time.fixedDeltaTime),
-                    ForceMode.VelocityChange);
-  
+                    Quaternion.LookRotation(_rigidbody.linearVelocity), _rotationSpeed);
+
                 yield return new WaitForFixedUpdate();
             }
             //_rigidbody.maxAngularVelocity = _rigidbody.maxAngularVelocity / 1.5f;
