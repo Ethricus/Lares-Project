@@ -15515,17 +15515,17 @@ PrefabInstance:
     - target: {fileID: 6958656555810349699, guid: 5e3adcac9cff7b74f9a29e4efd869cda,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 86.95826
+      value: 86.697
       objectReference: {fileID: 0}
     - target: {fileID: 6958656555810349699, guid: 5e3adcac9cff7b74f9a29e4efd869cda,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 50.28283
+      value: 50.377
       objectReference: {fileID: 0}
     - target: {fileID: 6958656555810349699, guid: 5e3adcac9cff7b74f9a29e4efd869cda,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 61.230198
+      value: 61.276
       objectReference: {fileID: 0}
     - target: {fileID: 6958656555810349699, guid: 5e3adcac9cff7b74f9a29e4efd869cda,
         type: 3}
@@ -15562,10 +15562,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6958656556321627005, guid: 5e3adcac9cff7b74f9a29e4efd869cda,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.066
+      objectReference: {fileID: 0}
     - target: {fileID: 7771469029422970937, guid: 5e3adcac9cff7b74f9a29e4efd869cda,
         type: 3}
       propertyPath: m_Name
       value: A_Stairs_Up_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771469029995053511, guid: 5e3adcac9cff7b74f9a29e4efd869cda,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23412,6 +23422,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: A_Stairs_Up_B (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7771469029995053511, guid: 5e3adcac9cff7b74f9a29e4efd869cda,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29586,6 +29601,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: A_Stairs_Up_B (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771469029995053511, guid: 5e3adcac9cff7b74f9a29e4efd869cda,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36050,12 +36070,12 @@ PrefabInstance:
     - target: {fileID: 6958656555810349699, guid: 5e3adcac9cff7b74f9a29e4efd869cda,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 60.64026
+      value: 60.812
       objectReference: {fileID: 0}
     - target: {fileID: 6958656555810349699, guid: 5e3adcac9cff7b74f9a29e4efd869cda,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 49.05283
+      value: 49.476
       objectReference: {fileID: 0}
     - target: {fileID: 6958656555810349699, guid: 5e3adcac9cff7b74f9a29e4efd869cda,
         type: 3}
@@ -36101,6 +36121,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: A_Stairs_Up_B (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771469029995053511, guid: 5e3adcac9cff7b74f9a29e4efd869cda,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44776,6 +44801,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1393357689}
     m_Modifications:
+    - target: {fileID: 6309851029300729591, guid: 190298c36c67a2241b063b882e23bea6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6309851030814126158, guid: 190298c36c67a2241b063b882e23bea6,
         type: 3}
       propertyPath: m_Name
@@ -80487,6 +80517,16 @@ PrefabInstance:
       propertyPath: _cameraTransform
       value: 
       objectReference: {fileID: 5227438}
+    - target: {fileID: 5907711952558842326, guid: 25e9d25adc2708e44a16a8f7b1fa11e5,
+        type: 3}
+      propertyPath: _nonInclineRange.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907711952558842326, guid: 25e9d25adc2708e44a16a8f7b1fa11e5,
+        type: 3}
+      propertyPath: _nonInclineRange.y
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5907711952558842326, guid: 25e9d25adc2708e44a16a8f7b1fa11e5,
         type: 3}
       propertyPath: _inAirMovementModifier

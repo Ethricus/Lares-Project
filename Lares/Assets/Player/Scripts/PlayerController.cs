@@ -30,11 +30,11 @@ namespace Lares
         }
 
         private bool _isGroundedInternal;
-       
+
         private int groundColliderCount;
         private bool _canJump => (_isGrounded && _jumpCount == 0) || (!_isGrounded && _jumpCount == 1);
         private int _jumpCount = 0;
-        private bool _isOnIncline => OnIncline();
+        //private bool _isOnIncline => OnIncline();
         private bool _isMovementLocked;
 
         [Header("Raycast Settings")]
@@ -55,32 +55,35 @@ namespace Lares
 
         [SerializeField] private Transform _cameraTransform;
 
+
+        [Header("New incline detection vars -- change this later")]
+        [SerializeField] private RaycastHit _inclineHitOut;
+        [SerializeField] private float _maxRaycastHitDistance = 1.0f;
+        [SerializeField] private float _maxInclineAngle = 60.0f;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _input = GetComponent<PlayerInput>();
-        
+
             _input.currentActionMap.FindAction("MovePlayer").performed += OnPlayerStartMoving;
             _input.currentActionMap.FindAction("MovePlayer").canceled += OnPlayerStopMoving;
             _input.currentActionMap.FindAction("Jump").performed += Jump;
-        //    //_input.currentActionMap.FindAction("Interact").performed += Interact;
+            //    //_input.currentActionMap.FindAction("Interact").performed += Interact;
             _input.currentActionMap.FindAction("Sprint").performed += OnPlayerStartSprint;
             _input.currentActionMap.FindAction("Sprint").canceled += OnPlayerStopSprint;
         }
 
         private void OnPlayerStartSprint(InputAction.CallbackContext context) { _movementForce *= _sprintSpeedMultiplier; _maxSpeed *= _sprintSpeedMultiplier; }
-        private void OnPlayerStopSprint(InputAction.CallbackContext context) {  _movementForce /= _sprintSpeedMultiplier; _maxSpeed /= _sprintSpeedMultiplier; }
+        private void OnPlayerStopSprint(InputAction.CallbackContext context) { _movementForce /= _sprintSpeedMultiplier; _maxSpeed /= _sprintSpeedMultiplier; }
 
         private void OnPlayerStartMoving(InputAction.CallbackContext context)
         {
             Vector2 movementInput = context.ReadValue<Vector2>();
 
             _moveDirection = new Vector3(movementInput.x, 0f, movementInput.y);
-            if (!_isOnIncline)
-                _moveCoroutine ??= StartCoroutine(NonInclineMovement());
-            else
-                _moveCoroutine ??= StartCoroutine(InclineMovement());
+            _moveCoroutine ??= StartCoroutine(Movement());
         }
 
         private void OnPlayerStopMoving(InputAction.CallbackContext context)
@@ -88,26 +91,25 @@ namespace Lares
             _moveDirection = Vector3.zero;
         }
 
-        private IEnumerator NonInclineMovement()
+        private IEnumerator Movement()
         {
             GameObject rotPoint = transform.GetChild(0).gameObject;
             GameObject model = transform.GetChild(1).gameObject;
-            
+
             while (_moveDirection != Vector3.zero)
             {
                 while (_isMovementLocked)
                 {
                     yield return new WaitForFixedUpdate();
                 }
-                if (_isOnIncline)
-                {
-                    _moveCoroutine ??= StartCoroutine(InclineMovement());
-                    yield break;
-                }
-                model.transform.localPosition = Vector3.zero;
 
                 rotPoint.transform.rotation = Quaternion.Slerp(rotPoint.transform.rotation,
                     Quaternion.Euler(0, _cameraTransform.rotation.eulerAngles.y, 0), _rotationSpeed);
+
+                if (OnIncline())
+                {
+                    _rigidbody.AddForce(GetInclineForwardDirection() * 20, ForceMode.Force);
+                }
 
                 _rigidbody.AddForce(rotPoint.transform.forward * (_moveDirection.z * _movementForce * Time.fixedDeltaTime),
                     ForceMode.VelocityChange);
@@ -120,14 +122,11 @@ namespace Lares
 
                 _rigidbody.linearVelocity = Vector3.ClampMagnitude(_rigidbody.linearVelocity, _maxSpeed);
 
+
+                _rigidbody.useGravity = !OnIncline();
                 yield return new WaitForFixedUpdate();
             }
             _moveCoroutine = null;
-        }
-
-        private IEnumerator InclineMovement()
-        {
-            yield return new Break();
         }
 
         private void Jump(InputAction.CallbackContext context)
@@ -135,14 +134,23 @@ namespace Lares
             if (!_canJump) { return; }
             _rigidbody.AddForce(new Vector3(0f, _jumpForce - _rigidbody.linearVelocity.y, 0f), ForceMode.Impulse);
             _jumpCount++;
-            
+
         }
 
         private bool OnIncline()
         {
-            if (!_isGrounded) return false;
-            if (_nonInclineRange.x < _inclineHeight.x || _inclineHeight.y > _nonInclineRange.x) return false;
-            return true;
+            if (Physics.Raycast(transform.position, Vector3.down, out _inclineHitOut, _maxRaycastHitDistance))
+            {
+                float angle = Vector3.Angle(Vector3.up, _inclineHitOut.normal);
+                bool angleAboveInclineRange = angle < _maxInclineAngle && angle != 0.0f;
+                return angleAboveInclineRange;
+            }
+            return false;
+        }
+
+        private Vector3 GetInclineForwardDirection()
+        {
+            return Vector3.ProjectOnPlane(_rigidbody.linearVelocity, _inclineHitOut.normal);
         }
 
         #region Collisions Checks
@@ -174,6 +182,18 @@ namespace Lares
                 if (groundColliderCount <= 0)
                     _isGrounded = false;
             }
+        }
+
+        private void LateUpdate()
+        {
+            transform.GetChild(1).gameObject.transform.localPosition = Vector3.zero;
+            _rigidbody.useGravity = !OnIncline();
+        }
+
+        private void OnDrawGizmos()
+        {
+            //draw the raycast incline 
+            Debug.DrawLine(transform.position, transform.position + Vector3.down * _maxRaycastHitDistance);
         }
 
         #endregion
