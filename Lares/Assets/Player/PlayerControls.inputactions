@@ -119,7 +119,7 @@
                     "id": "c5c548dd-b629-42f2-b0ea-39cc92accbcd",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 }
             ],
@@ -296,17 +296,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard and Mouse",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ee06b9fc-ae2f-48aa-be63-b4bbcbfb13ca",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false

@@ -40,9 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3599555450682167708}
+  - component: {fileID: 5907711952558842326}
   - component: {fileID: 7197617045025464269}
   - component: {fileID: 5686555668223667120}
-  - component: {fileID: 2087500087801596512}
   - component: {fileID: 707404702882113397}
   m_Layer: 0
   m_Name: Player
@@ -69,6 +69,34 @@ Transform:
   - {fileID: 3884664958609282388}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5907711952558842326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3397963650675998197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4942a66c11f2c4849bf2844f45b31fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycastDistance: 5
+  _movementForce: 20
+  _sprintSpeedMultiplier: 1.5
+  _jumpForce: 5
+  _rotationSpeed: 0.2
+  _maxSpeed: 5
+  _inAirMovementModifier: 0
+  _maxincline: 0
+  _inclineForce:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _nonInclineRange: {x: 0, y: 0}
+  _cameraTransform: {fileID: 0}
 --- !u!114 &7197617045025464269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,28 +155,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &2087500087801596512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3397963650675998197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8457699371b065f42a5afc085ce43534, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movementForce: 10
-  _maxSpeed: 4
-  _jumpForce: 5
-  _rotationSpeed: 0.1
-  _angularSpeed: 0
-  _sprintSpeedMultiplier: 0
-  _cameraTransform: {fileID: 3884664958609282388}
-  _sphereCastRadius: 0
-  _raycastDistance: 0
-  slopeLimit: 0
 --- !u!136 &707404702882113397
 CapsuleCollider:
   m_ObjectHideFlags: 0
