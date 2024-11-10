@@ -15,11 +15,8 @@ namespace Lares.Player.Scripts
             _input = GetComponentInParent<PlayerInput>();
             _animator = GetComponent<Animator>();
             _rigidbody = GetComponentInParent<Rigidbody>();
-            //_input.currentActionMap.FindAction("MovePlayer").performed += MoveStart;
-            //_input.currentActionMap.FindAction("MovePlayer").canceled += MoveEnd;
             _input.currentActionMap.FindAction("Sprint").performed += SprintStart;
             _input.currentActionMap.FindAction("Sprint").canceled += SprintEnd;
-            _input.currentActionMap.FindAction("Evade").performed += Evade;
 
         }
 
@@ -56,10 +53,15 @@ namespace Lares.Player.Scripts
             _animator.SetBool("Sprinting", false);
         }
 
-        void Evade(InputAction.CallbackContext context)
-        {
-            _animator.SetTrigger("Evade");
-        }
+        //void OnAnimatorMove()
+        //{
+        //    if (_animator)
+        //    {
+        //        Vector3 newPosition = transform.position;
+        //        newPosition.x += _animator.GetFloat("Moving") * Time.deltaTime;
+        //        transform.position = newPosition;
+        //    }
+        //}
 
     }
 }

@@ -15,31 +15,30 @@ namespace Lares
 
         private Vector3 _inclineHeight;
 
-        private bool _isGrounded
+        public bool IsGrounded
         {
-            set
+            private set
             {
-                _isGroundedInternal = value;
-                if (!_isGroundedInternal)
+                _isGrounded = value;
+                if (!_isGrounded)
                     _movementForce *= _inAirMovementModifier;
                 else
                     _movementForce /= _inAirMovementModifier;
             }
 
-            get { return _isGroundedInternal; }
+            get { return _isGrounded; }
         }
 
-        private bool _isGroundedInternal;
+        private bool _isGrounded;
 
-        private int groundColliderCount;
+        private int _groundColliderCount;
         private bool _canJump => (_isGrounded && _jumpCount == 0) || (!_isGrounded && _jumpCount == 1);
         private int _jumpCount = 0;
-        //private bool _isOnIncline => OnIncline();
         private bool _isMovementLocked;
         private bool _isSprinting;
 
         [Header("Raycast Settings")]
-        [SerializeField] float raycastDistance;
+        [SerializeField] private float _raycastDistance;
 
         [Header("Move Settings")]
         [SerializeField] private float _movementForce;
@@ -49,15 +48,16 @@ namespace Lares
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _inAirMovementModifier;
 
+        [Header("References")]
         [SerializeField] private Transform _cameraTransform;
-
+        [SerializeField] private GameObject _rotationPoint;
+        [SerializeField] private GameObject _playerModel;
 
         [Header("New incline detection vars -- change this later")]
         [SerializeField] private RaycastHit _inclineHitOut;
         [SerializeField] private float _maxRaycastHitDistance = 1.0f;
         [SerializeField] private float _maxInclineAngle = 60.0f;
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
@@ -66,7 +66,6 @@ namespace Lares
             _input.currentActionMap.FindAction("MovePlayer").performed += OnPlayerStartMoving;
             _input.currentActionMap.FindAction("MovePlayer").canceled += OnPlayerStopMoving;
             _input.currentActionMap.FindAction("Jump").performed += Jump;
-            //    //_input.currentActionMap.FindAction("Interact").performed += Interact;
             _input.currentActionMap.FindAction("Sprint").performed += OnPlayerSprint;
             _input.currentActionMap.FindAction("Sprint").canceled += OnPlayerSprint;
         }
@@ -88,8 +87,7 @@ namespace Lares
 
         private IEnumerator Movement()
         {
-            GameObject rotPoint = transform.GetChild(0).gameObject;
-            GameObject model = transform.GetChild(1).gameObject;
+            
 
             while (_moveDirection != Vector3.zero)
             {
@@ -98,24 +96,24 @@ namespace Lares
                     yield return new WaitForFixedUpdate();
                 }
 
-                rotPoint.transform.rotation = Quaternion.Slerp(rotPoint.transform.rotation,
+                _rotationPoint.transform.rotation = Quaternion.Slerp(_rotationPoint.transform.rotation,
                     Quaternion.Euler(0, _cameraTransform.rotation.eulerAngles.y, 0), _rotationSpeed);
 
                 if (OnIncline())
-                {
                     _rigidbody.AddForce(GetInclineForwardDirection() * 20, ForceMode.Force);
-                }
-
+                
                 float currentMovementForce = _movementForce;
                 float currentMaxSpeed = _maxSpeed;
-                if (_isSprinting) { currentMovementForce *= _sprintSpeedMultiplier; currentMaxSpeed *= _sprintSpeedMultiplier; }
 
-                _rigidbody.AddForce(rotPoint.transform.forward * (_moveDirection.z * currentMovementForce * Time.fixedDeltaTime),
+                if (_isSprinting) 
+                    currentMovementForce *= _sprintSpeedMultiplier; currentMaxSpeed *= _sprintSpeedMultiplier; 
+
+                _rigidbody.AddForce(_rotationPoint.transform.forward * (_moveDirection.z * currentMovementForce * Time.fixedDeltaTime),
                     ForceMode.VelocityChange);
-                _rigidbody.AddForce(rotPoint.transform.right * (_moveDirection.x * currentMovementForce * Time.fixedDeltaTime),
+                _rigidbody.AddForce(_rotationPoint.transform.right * (_moveDirection.x * currentMovementForce * Time.fixedDeltaTime),
                     ForceMode.VelocityChange);
 
-                model.transform.rotation = Quaternion.Slerp(model.transform.rotation,
+                _playerModel.transform.rotation = Quaternion.Slerp(_playerModel.transform.rotation,
                     Quaternion.LookRotation(new Vector3(_rigidbody.linearVelocity.x, 0f, _rigidbody.linearVelocity.z)),
                     _rotationSpeed);
 
@@ -157,7 +155,7 @@ namespace Lares
         {
             if (collision.gameObject.CompareTag("Ground"))
             {
-                groundColliderCount++;
+                _groundColliderCount++;
                 _jumpCount = 0;
                 _isGrounded = true;
             }
@@ -166,7 +164,7 @@ namespace Lares
         private void OnCollisionStay(Collision collision)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance))
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, _raycastDistance))
             {
                 _inclineHeight = hit.normal;
             }
@@ -174,20 +172,18 @@ namespace Lares
 
         private void OnCollisionExit(Collision collision)
         {
-
             if (collision.gameObject.CompareTag("Ground"))
             {
-                groundColliderCount--;
-                if (groundColliderCount <= 0)
+                _groundColliderCount--;
+                if (_groundColliderCount <= 0)
                     _isGrounded = false;
             }
         }
 
         #endregion
-
-        private void LateUpdate()
-        {
-            //transform.GetChild(1).gameObject.transform.localPosition = Vector3.zero;
+        private void FixedUpdate()
+        { 
+            _playerModel.transform.localPosition = Vector3.zero;
             _rigidbody.useGravity = !OnIncline();
         }
 
@@ -196,7 +192,5 @@ namespace Lares
             //draw the raycast incline 
             Debug.DrawLine(transform.position, transform.position + Vector3.down * _maxRaycastHitDistance);
         }
-
-        
     }
 }
