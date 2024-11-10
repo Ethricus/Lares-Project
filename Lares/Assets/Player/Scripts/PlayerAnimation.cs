@@ -8,17 +8,28 @@ namespace Lares.Player.Scripts
         private PlayerInput _input;
         private Animator _animator;
         private bool _isSprinting = false;
+        private Rigidbody _rigidbody;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             _input = GetComponentInParent<PlayerInput>();
             _animator = GetComponent<Animator>();
-            _input.currentActionMap.FindAction("MovePlayer").performed += MoveStart;
-            _input.currentActionMap.FindAction("MovePlayer").canceled += MoveEnd;
+            _rigidbody = GetComponentInParent<Rigidbody>();
             _input.currentActionMap.FindAction("Sprint").performed += SprintStart;
             _input.currentActionMap.FindAction("Sprint").canceled += SprintEnd;
-            _input.currentActionMap.FindAction("Evade").performed += Evade;
 
+        }
+
+        private void FixedUpdate()
+        {
+            if (Mathf.Abs( Vector3.Magnitude(_rigidbody.linearVelocity)) > 0.5)
+            {
+                _animator.SetBool("Moving", true);
+            }
+            else
+            {
+                _animator.SetBool("Moving", false);
+            }
         }
 
         void MoveStart(InputAction.CallbackContext context)
@@ -42,10 +53,15 @@ namespace Lares.Player.Scripts
             _animator.SetBool("Sprinting", false);
         }
 
-        void Evade(InputAction.CallbackContext context)
-        {
-            _animator.SetTrigger("Evade");
-        }
+        //void OnAnimatorMove()
+        //{
+        //    if (_animator)
+        //    {
+        //        Vector3 newPosition = transform.position;
+        //        newPosition.x += _animator.GetFloat("Moving") * Time.deltaTime;
+        //        transform.position = newPosition;
+        //    }
+        //}
 
     }
 }
