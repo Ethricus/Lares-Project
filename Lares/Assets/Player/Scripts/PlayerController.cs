@@ -36,6 +36,7 @@ namespace Lares
         private int _jumpCount = 0;
         //private bool _isOnIncline => OnIncline();
         private bool _isMovementLocked;
+        private bool _isSprinting;
 
         [Header("Raycast Settings")]
         [SerializeField] float raycastDistance;
@@ -47,11 +48,6 @@ namespace Lares
         [SerializeField] private float _rotationSpeed;
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _inAirMovementModifier;
-
-        [Header("Incline Settings")]
-        [SerializeField] private float _maxincline;
-        [SerializeField] private AnimationCurve _inclineForce;
-        [SerializeField] private Vector2 _nonInclineRange;
 
         [SerializeField] private Transform _cameraTransform;
 
@@ -71,12 +67,11 @@ namespace Lares
             _input.currentActionMap.FindAction("MovePlayer").canceled += OnPlayerStopMoving;
             _input.currentActionMap.FindAction("Jump").performed += Jump;
             //    //_input.currentActionMap.FindAction("Interact").performed += Interact;
-            _input.currentActionMap.FindAction("Sprint").performed += OnPlayerStartSprint;
-            _input.currentActionMap.FindAction("Sprint").canceled += OnPlayerStopSprint;
+            _input.currentActionMap.FindAction("Sprint").performed += OnPlayerSprint;
+            _input.currentActionMap.FindAction("Sprint").canceled += OnPlayerSprint;
         }
 
-        private void OnPlayerStartSprint(InputAction.CallbackContext context) { _movementForce *= _sprintSpeedMultiplier; _maxSpeed *= _sprintSpeedMultiplier; }
-        private void OnPlayerStopSprint(InputAction.CallbackContext context) { _movementForce /= _sprintSpeedMultiplier; _maxSpeed /= _sprintSpeedMultiplier; }
+        private void OnPlayerSprint(InputAction.CallbackContext context) { _isSprinting = !_isSprinting; }
 
         private void OnPlayerStartMoving(InputAction.CallbackContext context)
         {
@@ -111,16 +106,20 @@ namespace Lares
                     _rigidbody.AddForce(GetInclineForwardDirection() * 20, ForceMode.Force);
                 }
 
-                _rigidbody.AddForce(rotPoint.transform.forward * (_moveDirection.z * _movementForce * Time.fixedDeltaTime),
+                float currentMovementForce = _movementForce;
+                float currentMaxSpeed = _maxSpeed;
+                if (_isSprinting) { currentMovementForce *= _sprintSpeedMultiplier; currentMaxSpeed *= _sprintSpeedMultiplier; }
+
+                _rigidbody.AddForce(rotPoint.transform.forward * (_moveDirection.z * currentMovementForce * Time.fixedDeltaTime),
                     ForceMode.VelocityChange);
-                _rigidbody.AddForce(rotPoint.transform.right * (_moveDirection.x * _movementForce * Time.fixedDeltaTime),
+                _rigidbody.AddForce(rotPoint.transform.right * (_moveDirection.x * currentMovementForce * Time.fixedDeltaTime),
                     ForceMode.VelocityChange);
 
                 model.transform.rotation = Quaternion.Slerp(model.transform.rotation,
                     Quaternion.LookRotation(new Vector3(_rigidbody.linearVelocity.x, 0f, _rigidbody.linearVelocity.z)),
                     _rotationSpeed);
 
-                _rigidbody.linearVelocity = Vector3.ClampMagnitude(_rigidbody.linearVelocity, _maxSpeed);
+                _rigidbody.linearVelocity = Vector3.ClampMagnitude(_rigidbody.linearVelocity, currentMaxSpeed);
 
 
                 _rigidbody.useGravity = !OnIncline();
@@ -184,9 +183,11 @@ namespace Lares
             }
         }
 
+        #endregion
+
         private void LateUpdate()
         {
-            transform.GetChild(1).gameObject.transform.localPosition = Vector3.zero;
+            //transform.GetChild(1).gameObject.transform.localPosition = Vector3.zero;
             _rigidbody.useGravity = !OnIncline();
         }
 
@@ -196,6 +197,6 @@ namespace Lares
             Debug.DrawLine(transform.position, transform.position + Vector3.down * _maxRaycastHitDistance);
         }
 
-        #endregion
+        
     }
 }
