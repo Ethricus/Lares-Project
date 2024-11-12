@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e231d10411d4e4cb325936960a0a98, type: 3}
   m_Name: ScriptableInventory
   m_EditorClassIdentifier: 
-  inventoryItem:
-  - itemID: 0
-    itemName: 
-    itemDescription: 
+  inventoryItems:
+  - itemID: 1
+    itemName: test
+    itemDescription: test
     itemImage: {fileID: 0}
+    itemType: 0
     onUse: 0
