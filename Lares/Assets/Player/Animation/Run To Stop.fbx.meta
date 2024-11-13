@@ -1,99 +1,9 @@
 fileFormatVersion: 2
-guid: d6bffbf0d3b43f247bc9e6505c8f2e53
+guid: 9b7c09c3c85d4c64c8d9d198d62460b3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_Body_00_SKIN (Instance)
-    second: {fileID: 2100000, guid: f33060f816c66fb4a9965dd2bf9dcd13, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_EyeHighlight_00_EYE (Instance)
-    second: {fileID: 2100000, guid: 651790302885efc449657e4a8b90d7fa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_EyeIris_00_EYE (Instance)
-    second: {fileID: 2100000, guid: b6b42d83464e0da49875b00547dd38d3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_EyeWhite_00_EYE (Instance)
-    second: {fileID: 2100000, guid: 9946453a5d6422749a1df0d71e06c224, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_FaceBrow_00_FACE (Instance)
-    second: {fileID: 2100000, guid: 61173f169c126e54aaf13df372050a59, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_FaceEyeline_00_FACE (Instance)
-    second: {fileID: 2100000, guid: c41b88822d9cdf8458e54b0cc083ca84, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_FaceMouth_00_FACE (Instance)
-    second: {fileID: 2100000, guid: cd37874093ee5b94cabe5342438cb99a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_Face_00_SKIN (Instance)
-    second: {fileID: 2100000, guid: dce89bfc0c8d4b14c9c9d12cfd8a2be4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_00_HairBack_00_HAIR (Instance)
-    second: {fileID: 2100000, guid: 288aa27cf00f0a048a785a6a4b55f403, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_000_Hair_00_HAIR (Instance)
-    second: {fileID: 2100000, guid: 1eacf402a6449044d9c1fc1553201b58, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_007_01_Accessory_Tie_01_CLOTH_01 (Instance)
-    second: {fileID: 2100000, guid: a419cc296b61ec94fac797d04234bb25, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_007_01_Accessory_Tie_01_CLOTH_02 (Instance)
-    second: {fileID: 2100000, guid: e7b341c6f0e3cec43bb19f014bd572c4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_007_03_Tops_01_CLOTH (Instance)
-    second: {fileID: 2100000, guid: c42665c031e48ab4e8b1e13340ee6e4e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_008_01_Shoes_01_CLOTH_01 (Instance)
-    second: {fileID: 2100000, guid: 6794c81bfb882d44e80ec3bd80682748, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_008_01_Shoes_01_CLOTH_02 (Instance)
-    second: {fileID: 2100000, guid: 66ccb7e670fb92444915f5821f971e5b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_010_01_Onepiece_00_CLOTH_01 (Instance)
-    second: {fileID: 2100000, guid: 125a9f07d02b8ff4ca153e7cdea301dd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_010_01_Onepiece_00_CLOTH_02 (Instance)
-    second: {fileID: 2100000, guid: 36a0a8bb931c0fe49a166e5581c1ed40, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: N00_010_01_Onepiece_00_CLOTH_03 (Instance)
-    second: {fileID: 2100000, guid: e021513e98268d24ea8f655b3b44a4c3, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -119,13 +29,42 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: mixamo.com
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 27
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 1
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
@@ -1589,11 +1528,12 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: d6bffbf0d3b43f247bc9e6505c8f2e53,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

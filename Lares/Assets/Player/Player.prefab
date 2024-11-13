@@ -40,10 +40,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3599555450682167708}
+  - component: {fileID: 5907711952558842326}
   - component: {fileID: 7197617045025464269}
   - component: {fileID: 5686555668223667120}
-  - component: {fileID: 2087500087801596512}
   - component: {fileID: 707404702882113397}
+  - component: {fileID: 7290977629352667550}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -60,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 3397963650675998197}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.886875, y: 1.9866655, z: -2.826306}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -69,6 +70,36 @@ Transform:
   - {fileID: 3884664958609282388}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5907711952558842326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3397963650675998197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4942a66c11f2c4849bf2844f45b31fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycastDistance: 5
+  _movementForce: 20
+  _sprintSpeedMultiplier: 1.5
+  _jumpForce: 5
+  _rotationSpeed: 0.2
+  _maxSpeed: 5
+  _inAirMovementModifier: 0
+  _maxincline: 0
+  _inclineForce:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _nonInclineRange: {x: 0, y: 0}
+  _cameraTransform: {fileID: 0}
+  _maxRaycastHitDistance: 1
+  _maxInclineAngle: 60
 --- !u!114 &7197617045025464269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,8 +139,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3397963650675998197}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 5
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -127,23 +158,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &2087500087801596512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3397963650675998197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8457699371b065f42a5afc085ce43534, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movementForce: 10
-  _maxSpeed: 4
-  _jumpForce: 5
-  _rotationSpeed: 0.1
-  _cameraTransform: {fileID: 3884664958609282388}
 --- !u!136 &707404702882113397
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -163,10 +177,55 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.10805452
-  m_Height: 1.8129318
+  m_Radius: 0.16279781
+  m_Height: 1.8668073
   m_Direction: 1
-  m_Center: {x: 0, y: 0.79212344, z: 0.39194548}
+  m_Center: {x: 0, y: 0.95, z: 0}
+--- !u!23 &7290977629352667550
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3397963650675998197}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &1508075442154013443
 PrefabInstance:
   m_ObjectHideFlags: 0
