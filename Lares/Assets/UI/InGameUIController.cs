@@ -23,8 +23,6 @@ namespace Lares.UI
         public MainUITabs currentActiveTab => _currentActiveTab.tabName;
         [SerializeField] PlayerInput _input;
 
-        public static event System.Action<bool> ToggleMenu;
-
         private void Start()
         {
             _currentActiveTab = _tabs[0];

@@ -22,17 +22,17 @@ namespace Lares.Inventory
         public int itemID;
         public string itemName;
         public string itemDescription;
-        public Image itemImage;
+        public Sprite itemSprite;
         public ItemTypes itemType;
         public onUseFunctions onUse;
 
-        public InventoryItem(int _itemID, string _itemName, string _itemDes, Image _itemimage, ItemTypes _itemType, onUseFunctions _onUse)
+        public InventoryItem(int _itemID, string _itemName, string _itemDes, Sprite _itemimage, ItemTypes _itemType, onUseFunctions _onUse)
         {
             itemID = _itemID;
             itemName = _itemName;
             itemDescription = _itemDes;
             itemType = _itemType;
-            itemImage = _itemimage;
+            itemSprite = _itemimage;
             itemType = _itemType;
             onUse = _onUse;
         }
@@ -57,6 +57,9 @@ namespace Lares.Inventory
         void Start()
         {
             InventoryData = new();
+            //AddToInventory(0);
+            AddToInventory(2);
+            AddToInventory(0);
         }
 
         public bool AddToInventory(int ID)
@@ -129,7 +132,7 @@ namespace Lares.Inventory
 
         public bool IsValidItemID(int ID)
         {
-            return Inventorylist.inventoryItems.Any<InventoryItem>(i => i.itemID == ID); 
+            return Inventorylist.inventoryItems.Any(i => i.itemID == ID); 
         }
 
         public List<Pair<InventoryItem, int>> ReturnInventoryAsInventoryItems()
