@@ -1,5 +1,7 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 namespace Lares.Camera.Scripts
 {
@@ -20,15 +22,11 @@ namespace Lares.Camera.Scripts
         [SerializeField, Range(0.01f, 2f)] private float _mouseSensitivity = 1f;
         [SerializeField, Range(0.01f, 2f)] private float _controllerSensitivity = 1f;
 
-        
-        private PlayerControls _playerControls;
 
         private Vector2 _inputVector;
 
         private void Awake()
         {
-            _playerControls = new PlayerControls();
-
             if (!_playerInput)
                 Debug.LogError("Player Input not found!");
         }
@@ -41,17 +39,16 @@ namespace Lares.Camera.Scripts
         
         private void OnEnable()
         {
-            _playerControls.Enable();
-            _playerControls.BaseControls.MoveCamera.performed += OnMoveCameraPerformed;
-            _playerControls.BaseControls.MoveCamera.canceled += OnMoveCameraCanceled;
+            InputActionMap actionMap = _playerInput.actions.FindActionMap("BaseControls");
+            actionMap.FindAction("MoveCamera").performed += OnMoveCameraPerformed;
+            actionMap.FindAction("MoveCamera").canceled += OnMoveCameraCanceled;
         }
 
         private void OnDisable()
         {
-            _playerControls.BaseControls.MoveCamera.performed -= OnMoveCameraPerformed;
-            _playerControls.BaseControls.MoveCamera.canceled -= OnMoveCameraCanceled;
-
-            _playerControls.Disable();
+            InputActionMap actionMap = _playerInput.actions.FindActionMap("BaseControls");
+            actionMap.FindAction("MoveCamera").performed -= OnMoveCameraPerformed;
+            actionMap.FindAction("MoveCamera").canceled -= OnMoveCameraCanceled;
         }
         
         private void LateUpdate()

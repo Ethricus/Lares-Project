@@ -82,7 +82,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""OpenMenu"",
+                    ""name"": ""ToggleMenu"",
                     ""type"": ""Button"",
                     ""id"": ""71742469-13f9-420d-bbdb-c36679124f67"",
                     ""expectedControlType"": """",
@@ -351,7 +351,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Controller"",
-                    ""action"": ""OpenMenu"",
+                    ""action"": ""ToggleMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -362,7 +362,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard and Mouse"",
-                    ""action"": ""OpenMenu"",
+                    ""action"": ""ToggleMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -609,6 +609,145 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UIControls"",
+            ""id"": ""2a144b00-63f3-49fa-9148-7180b2acf8dd"",
+            ""actions"": [
+                {
+                    ""name"": ""ToggleMenus"",
+                    ""type"": ""Button"",
+                    ""id"": ""da1c1156-bf7c-483d-987b-9665bd98c993"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""f6b2a721-cac4-4cb1-a4fd-65b3e2363029"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Navigate"",
+                    ""type"": ""Button"",
+                    ""id"": ""e583b1a8-e53a-4226-a96e-7f2e0a11875a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""69ddce80-9be7-426f-8ce0-38dded63f1c2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DeselectBack"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb389a35-67d6-4a7a-9f18-30e3fcab3fcf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TabOver"",
+                    ""type"": ""Button"",
+                    ""id"": ""1001c7f9-a493-479e-b91e-2d4a0bef0abb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""356afeb1-ff8e-43ef-a697-46e6cb37c088"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleMenus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a14117f8-2d80-41dd-a709-4279e1a42c45"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Controller"",
+                    ""action"": ""ToggleMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52b8de54-6828-4ae6-89ba-41058974292a"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard and Mouse"",
+                    ""action"": ""ToggleMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98f08f38-77a1-4e6b-9fdb-d7a28fd54eca"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2925767a-2a93-42e3-a54c-3d7d60efd62a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""232a3be8-6570-4814-a34d-96916a79af93"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeselectBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a046bc88-d51d-48e7-83d9-d93171635cbe"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TabOver"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -649,18 +788,27 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_BaseControls_Interact = m_BaseControls.FindAction("Interact", throwIfNotFound: true);
         m_BaseControls_Jump = m_BaseControls.FindAction("Jump", throwIfNotFound: true);
         m_BaseControls_LightAttack = m_BaseControls.FindAction("LightAttack", throwIfNotFound: true);
-        m_BaseControls_OpenMenu = m_BaseControls.FindAction("OpenMenu", throwIfNotFound: true);
+        m_BaseControls_ToggleMenu = m_BaseControls.FindAction("ToggleMenu", throwIfNotFound: true);
         m_BaseControls_MagicAttack1 = m_BaseControls.FindAction("MagicAttack1", throwIfNotFound: true);
         m_BaseControls_MagicAttack2 = m_BaseControls.FindAction("MagicAttack2", throwIfNotFound: true);
         m_BaseControls_LockOn = m_BaseControls.FindAction("LockOn", throwIfNotFound: true);
         m_BaseControls_Evade = m_BaseControls.FindAction("Evade", throwIfNotFound: true);
         m_BaseControls_Pause = m_BaseControls.FindAction("Pause", throwIfNotFound: true);
         m_BaseControls_Sprint = m_BaseControls.FindAction("Sprint", throwIfNotFound: true);
+        // UIControls
+        m_UIControls = asset.FindActionMap("UIControls", throwIfNotFound: true);
+        m_UIControls_ToggleMenus = m_UIControls.FindAction("ToggleMenus", throwIfNotFound: true);
+        m_UIControls_ToggleMenu = m_UIControls.FindAction("ToggleMenu", throwIfNotFound: true);
+        m_UIControls_Navigate = m_UIControls.FindAction("Navigate", throwIfNotFound: true);
+        m_UIControls_Select = m_UIControls.FindAction("Select", throwIfNotFound: true);
+        m_UIControls_DeselectBack = m_UIControls.FindAction("DeselectBack", throwIfNotFound: true);
+        m_UIControls_TabOver = m_UIControls.FindAction("TabOver", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_BaseControls.enabled, "This will cause a leak and performance issues, PlayerControls.BaseControls.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_UIControls.enabled, "This will cause a leak and performance issues, PlayerControls.UIControls.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -728,7 +876,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_BaseControls_Interact;
     private readonly InputAction m_BaseControls_Jump;
     private readonly InputAction m_BaseControls_LightAttack;
-    private readonly InputAction m_BaseControls_OpenMenu;
+    private readonly InputAction m_BaseControls_ToggleMenu;
     private readonly InputAction m_BaseControls_MagicAttack1;
     private readonly InputAction m_BaseControls_MagicAttack2;
     private readonly InputAction m_BaseControls_LockOn;
@@ -745,7 +893,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_BaseControls_Interact;
         public InputAction @Jump => m_Wrapper.m_BaseControls_Jump;
         public InputAction @LightAttack => m_Wrapper.m_BaseControls_LightAttack;
-        public InputAction @OpenMenu => m_Wrapper.m_BaseControls_OpenMenu;
+        public InputAction @ToggleMenu => m_Wrapper.m_BaseControls_ToggleMenu;
         public InputAction @MagicAttack1 => m_Wrapper.m_BaseControls_MagicAttack1;
         public InputAction @MagicAttack2 => m_Wrapper.m_BaseControls_MagicAttack2;
         public InputAction @LockOn => m_Wrapper.m_BaseControls_LockOn;
@@ -779,9 +927,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LightAttack.started += instance.OnLightAttack;
             @LightAttack.performed += instance.OnLightAttack;
             @LightAttack.canceled += instance.OnLightAttack;
-            @OpenMenu.started += instance.OnOpenMenu;
-            @OpenMenu.performed += instance.OnOpenMenu;
-            @OpenMenu.canceled += instance.OnOpenMenu;
+            @ToggleMenu.started += instance.OnToggleMenu;
+            @ToggleMenu.performed += instance.OnToggleMenu;
+            @ToggleMenu.canceled += instance.OnToggleMenu;
             @MagicAttack1.started += instance.OnMagicAttack1;
             @MagicAttack1.performed += instance.OnMagicAttack1;
             @MagicAttack1.canceled += instance.OnMagicAttack1;
@@ -822,9 +970,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LightAttack.started -= instance.OnLightAttack;
             @LightAttack.performed -= instance.OnLightAttack;
             @LightAttack.canceled -= instance.OnLightAttack;
-            @OpenMenu.started -= instance.OnOpenMenu;
-            @OpenMenu.performed -= instance.OnOpenMenu;
-            @OpenMenu.canceled -= instance.OnOpenMenu;
+            @ToggleMenu.started -= instance.OnToggleMenu;
+            @ToggleMenu.performed -= instance.OnToggleMenu;
+            @ToggleMenu.canceled -= instance.OnToggleMenu;
             @MagicAttack1.started -= instance.OnMagicAttack1;
             @MagicAttack1.performed -= instance.OnMagicAttack1;
             @MagicAttack1.canceled -= instance.OnMagicAttack1;
@@ -860,6 +1008,92 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public BaseControlsActions @BaseControls => new BaseControlsActions(this);
+
+    // UIControls
+    private readonly InputActionMap m_UIControls;
+    private List<IUIControlsActions> m_UIControlsActionsCallbackInterfaces = new List<IUIControlsActions>();
+    private readonly InputAction m_UIControls_ToggleMenus;
+    private readonly InputAction m_UIControls_ToggleMenu;
+    private readonly InputAction m_UIControls_Navigate;
+    private readonly InputAction m_UIControls_Select;
+    private readonly InputAction m_UIControls_DeselectBack;
+    private readonly InputAction m_UIControls_TabOver;
+    public struct UIControlsActions
+    {
+        private @PlayerControls m_Wrapper;
+        public UIControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ToggleMenus => m_Wrapper.m_UIControls_ToggleMenus;
+        public InputAction @ToggleMenu => m_Wrapper.m_UIControls_ToggleMenu;
+        public InputAction @Navigate => m_Wrapper.m_UIControls_Navigate;
+        public InputAction @Select => m_Wrapper.m_UIControls_Select;
+        public InputAction @DeselectBack => m_Wrapper.m_UIControls_DeselectBack;
+        public InputAction @TabOver => m_Wrapper.m_UIControls_TabOver;
+        public InputActionMap Get() { return m_Wrapper.m_UIControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIControlsActions set) { return set.Get(); }
+        public void AddCallbacks(IUIControlsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIControlsActionsCallbackInterfaces.Add(instance);
+            @ToggleMenus.started += instance.OnToggleMenus;
+            @ToggleMenus.performed += instance.OnToggleMenus;
+            @ToggleMenus.canceled += instance.OnToggleMenus;
+            @ToggleMenu.started += instance.OnToggleMenu;
+            @ToggleMenu.performed += instance.OnToggleMenu;
+            @ToggleMenu.canceled += instance.OnToggleMenu;
+            @Navigate.started += instance.OnNavigate;
+            @Navigate.performed += instance.OnNavigate;
+            @Navigate.canceled += instance.OnNavigate;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
+            @DeselectBack.started += instance.OnDeselectBack;
+            @DeselectBack.performed += instance.OnDeselectBack;
+            @DeselectBack.canceled += instance.OnDeselectBack;
+            @TabOver.started += instance.OnTabOver;
+            @TabOver.performed += instance.OnTabOver;
+            @TabOver.canceled += instance.OnTabOver;
+        }
+
+        private void UnregisterCallbacks(IUIControlsActions instance)
+        {
+            @ToggleMenus.started -= instance.OnToggleMenus;
+            @ToggleMenus.performed -= instance.OnToggleMenus;
+            @ToggleMenus.canceled -= instance.OnToggleMenus;
+            @ToggleMenu.started -= instance.OnToggleMenu;
+            @ToggleMenu.performed -= instance.OnToggleMenu;
+            @ToggleMenu.canceled -= instance.OnToggleMenu;
+            @Navigate.started -= instance.OnNavigate;
+            @Navigate.performed -= instance.OnNavigate;
+            @Navigate.canceled -= instance.OnNavigate;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
+            @DeselectBack.started -= instance.OnDeselectBack;
+            @DeselectBack.performed -= instance.OnDeselectBack;
+            @DeselectBack.canceled -= instance.OnDeselectBack;
+            @TabOver.started -= instance.OnTabOver;
+            @TabOver.performed -= instance.OnTabOver;
+            @TabOver.canceled -= instance.OnTabOver;
+        }
+
+        public void RemoveCallbacks(IUIControlsActions instance)
+        {
+            if (m_Wrapper.m_UIControlsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIControlsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIControlsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIControlsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIControlsActions @UIControls => new UIControlsActions(this);
     private int m_KeyboardandMouseSchemeIndex = -1;
     public InputControlScheme KeyboardandMouseScheme
     {
@@ -886,12 +1120,21 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLightAttack(InputAction.CallbackContext context);
-        void OnOpenMenu(InputAction.CallbackContext context);
+        void OnToggleMenu(InputAction.CallbackContext context);
         void OnMagicAttack1(InputAction.CallbackContext context);
         void OnMagicAttack2(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnEvade(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+    }
+    public interface IUIControlsActions
+    {
+        void OnToggleMenus(InputAction.CallbackContext context);
+        void OnToggleMenu(InputAction.CallbackContext context);
+        void OnNavigate(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
+        void OnDeselectBack(InputAction.CallbackContext context);
+        void OnTabOver(InputAction.CallbackContext context);
     }
 }

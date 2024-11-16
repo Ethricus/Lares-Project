@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -58,16 +59,21 @@ namespace Lares
         [SerializeField] private float _maxRaycastHitDistance = 1.0f;
         [SerializeField] private float _maxInclineAngle = 60.0f;
 
+        
+
         void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _input = GetComponent<PlayerInput>();
 
-            _input.currentActionMap.FindAction("MovePlayer").performed += OnPlayerStartMoving;
-            _input.currentActionMap.FindAction("MovePlayer").canceled += OnPlayerStopMoving;
-            _input.currentActionMap.FindAction("Jump").performed += Jump;
-            _input.currentActionMap.FindAction("Sprint").performed += OnPlayerSprint;
-            _input.currentActionMap.FindAction("Sprint").canceled += OnPlayerSprint;
+            InputActionMap actionMap = _input.actions.FindActionMap("BaseControls");
+
+            actionMap.FindAction("MovePlayer").performed += OnPlayerStartMoving;
+            actionMap.FindAction("MovePlayer").canceled += OnPlayerStopMoving;
+            actionMap.FindAction("Jump").performed += Jump;
+            actionMap.FindAction("Sprint").performed += OnPlayerSprint;
+            actionMap.FindAction("Sprint").canceled += OnPlayerSprint;
+            
         }
 
         private void OnPlayerSprint(InputAction.CallbackContext context) { _isSprinting = !_isSprinting; }

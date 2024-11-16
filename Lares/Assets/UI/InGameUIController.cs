@@ -1,7 +1,9 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 namespace Lares.UI
 {
@@ -19,7 +21,9 @@ namespace Lares.UI
         [SerializeField] private Tab[] _tabs;
         private Tab _currentActiveTab;
         public MainUITabs currentActiveTab => _currentActiveTab.tabName;
-        
+        [SerializeField] PlayerInput _input;
+
+        public static event System.Action<bool> ToggleMenu;
 
         private void Start()
         {
@@ -28,6 +32,21 @@ namespace Lares.UI
             {
                 tab.screenButton.onClick.AddListener(() => OnActiveTabChanged(tab));
             }
+            _input.actions.FindActionMap("BaseControls").FindAction("ToggleMenu").performed += MenuOn;
+            _input.actions.FindActionMap("UIControls").FindAction("ToggleMenu").performed += MenuOff;
+            gameObject.SetActive(false);
+        }
+
+        private void MenuOn(InputAction.CallbackContext context) 
+        {
+            gameObject.SetActive(true);
+            _input.currentActionMap = _input.actions.FindActionMap("UIControls");
+        }
+
+        private void MenuOff(InputAction.CallbackContext context) 
+        {
+            gameObject.SetActive(false);
+            _input.currentActionMap = _input.actions.FindActionMap("BaseControls");
         }
 
         private void OnActiveTabChanged(Tab newTab)
