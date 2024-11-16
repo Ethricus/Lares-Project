@@ -35,6 +35,7 @@ namespace Lares.UI
             gameObject.SetActive(false);
         }
 
+
         private void MenuOn(InputAction.CallbackContext context) 
         {
             gameObject.SetActive(true);

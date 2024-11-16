@@ -34,6 +34,14 @@ namespace Lares.Inventory
             _keyButton.onClick.AddListener(() => ChangeInventoryView(ItemTypes.KEY));
         }
 
+        private void OnEnable()
+        {
+            LoadInventory();
+            _recoveryButton.onClick.AddListener(() => ChangeInventoryView(ItemTypes.RECOVERY));
+            _materialsButton.onClick.AddListener(() => ChangeInventoryView(ItemTypes.MATERIAL));
+            _keyButton.onClick.AddListener(() => ChangeInventoryView(ItemTypes.KEY));
+        }
+
         private void ChangeInventoryView(ItemTypes itemType)
         {
             LoadInventory();
