@@ -9,6 +9,4 @@ namespace Lares.Inventory
     {
         [SerializeReference] public List<InventoryItem> ItemList = new List<InventoryItem>();
     }
-
-   
 }

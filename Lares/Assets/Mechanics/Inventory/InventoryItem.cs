@@ -9,10 +9,10 @@ namespace Lares.Inventory
     [Serializable]
     public struct InventoryData
     {
-        [ObjectID] public string ItemID;
-        public string itemName;
-        public string itemDescription;
-        public UnityEngine.UI.Image itemImage;
+        [ObjectID] public string ItemId;
+        public string ItemName;
+        public string ItemDescription;
+        public UnityEngine.UI.Image ItemImage;
     }
 
     public interface IItem
@@ -26,14 +26,14 @@ namespace Lares.Inventory
         public InventoryData ItemData;
         public virtual void OnUse() { return; }
 
-        public static bool operator == (InventoryItem a, InventoryItem b) { return a.ItemData.ItemID == b.ItemData.ItemID; }
-        public static bool operator != (InventoryItem a, InventoryItem b) { return a.ItemData.ItemID != b.ItemData.ItemID; }
+        public static bool operator == (InventoryItem a, InventoryItem b) { return a.ItemData.ItemId == b.ItemData.ItemId; }
+        public static bool operator != (InventoryItem a, InventoryItem b) { return a.ItemData.ItemId != b.ItemData.ItemId; }
 
         public override bool Equals(System.Object obj)
         {
             if (obj == null) return false;
             if (!(obj is InventoryItem)) return false;
-            return ItemData.ItemID == (obj as InventoryItem).ItemData.ItemID;
+            return ItemData.ItemId == (obj as InventoryItem).ItemData.ItemId;
         }
 
         public override int GetHashCode() { return ItemData.GetHashCode(); }
@@ -41,7 +41,7 @@ namespace Lares.Inventory
 
     public class HealthPotion : InventoryItem
     {
-        [SerializeField] private int HealthPotionParameterTest;
+        [SerializeField] private int _healthPotionParameterTest;
         public override void OnUse()
         {
             Debug.Log("Health potion used");
@@ -50,8 +50,7 @@ namespace Lares.Inventory
 
     public class MagicPotion : InventoryItem
     {
-        [SerializeField] private int MagicPotionParameterTest;
+        [SerializeField] private int _magicPotionParameterTest;
         public override void OnUse() { Debug.Log("Magic Potion used!"); }
     }
-
 }

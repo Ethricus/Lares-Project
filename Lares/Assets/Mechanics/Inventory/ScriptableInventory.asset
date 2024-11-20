@@ -15,7 +15,6 @@ MonoBehaviour:
   ItemList:
   - rid: 6271435567008317521
   - rid: 6271435567008317522
-  - rid: 6271435573936259140
   references:
     version: 2
     RefIds:
@@ -37,12 +36,3 @@ MonoBehaviour:
           itemDescription: 
           itemImage: {fileID: 0}
         MagicPotionParameterTest: 1
-    - rid: 6271435573936259140
-      type: {class: HealthPotion, ns: Lares.Inventory, asm: Assembly-CSharp}
-      data:
-        ItemData:
-          ItemID: 490ebfb0-7f20-4b80-ad08-5c4e7cf5ce28
-          itemName: 
-          itemDescription: 
-          itemImage: {fileID: 0}
-        HealthPotionParameterTest: 0
