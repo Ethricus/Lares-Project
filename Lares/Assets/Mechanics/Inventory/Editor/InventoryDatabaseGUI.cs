@@ -10,9 +10,9 @@ namespace Lares.Inventory
     [CustomEditor(typeof(ScriptableInventory))]
     public class InventoryDatabaseGUI : Editor
     {
-        string[] _itemNameArray;
-        Type[] _itemTypeArray;
-        int _selectedOption = 0;
+        private string[] _itemNameArray;
+        private Type[] _itemTypeArray;
+        private int _selectedOption = 0;
 
         private void OnEnable()
         {
@@ -74,9 +74,9 @@ namespace Lares.Inventory
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             GUI.enabled = false;
-            if (property.intValue == 0)
+            if (string.IsNullOrEmpty(property.stringValue))
             {
-                property.intValue = Guid.NewGuid().ToString().GetHashCode(); //due to GUIDs not showing in editor + comparison speed 
+                property.stringValue = Guid.NewGuid().ToString();
             }
             EditorGUI.PropertyField(position, property, label, true);
             GUI.enabled = true;
