@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 namespace Lares.Inventory
@@ -19,7 +17,6 @@ namespace Lares.Inventory
     public class ScriptableInventory : ScriptableObject
     {
         [SerializeReference] public List<InventoryItem> ItemList = new List<InventoryItem>();
-
     }
 
     public class ObjectID : PropertyAttribute { }

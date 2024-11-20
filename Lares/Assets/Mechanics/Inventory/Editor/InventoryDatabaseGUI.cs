@@ -4,11 +4,6 @@ using System.Reflection;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
-using Codice.Client.BaseCommands.Merge.Xml;
-using Yarn;
-using Unity.VisualScripting;
-using UnityEditor.UIElements;
 
 namespace Lares.Inventory
 {
@@ -21,7 +16,7 @@ namespace Lares.Inventory
 
         private void OnEnable()
         {
-            GetArrayOfTypes<InventoryItem>();
+            SetArrayOfTypes<InventoryItem>();
         }
 
         public override void OnInspectorGUI()
@@ -38,6 +33,10 @@ namespace Lares.Inventory
             }
         }
 
+        /// <summary>
+        /// Functionality for the GUI button to add a class of the current selected class in the dropdown and add it to the ItemList
+        /// </summary>
+        /// <param name="itemType"></param>
         public void AddSelectedOption(Type itemType)
         {
             SerializedProperty property = serializedObject.FindProperty("ItemList");
@@ -47,7 +46,11 @@ namespace Lares.Inventory
             serializedObject.ApplyModifiedProperties();
         }
 
-        public void GetArrayOfTypes<T> () where T : InventoryItem
+        /// <summary>
+        /// Gets all classes inheriting from InventoryItem using reflection and adds them to a list of types and list of names
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public void SetArrayOfTypes<T> () where T : InventoryItem
         {
             List<string> classNameList = new();
             List<Type> classTypeList = new();
@@ -62,6 +65,9 @@ namespace Lares.Inventory
     }
 
 #if UNITY_EDITOR
+    /// <summary>
+    /// Sets an Integer ID if one does not previously exist. Sets the field to read only.
+    /// </summary>
     [CustomPropertyDrawer(typeof(ObjectID))]
     public class ObjectIDDrawer : PropertyDrawer 
     {
@@ -70,7 +76,7 @@ namespace Lares.Inventory
             GUI.enabled = false;
             if (property.intValue == 0)
             {
-                property.intValue = Guid.NewGuid().ToString().GetHashCode();
+                property.intValue = Guid.NewGuid().ToString().GetHashCode(); //due to GUIDs not showing in editor + comparison speed 
             }
             EditorGUI.PropertyField(position, property, label, true);
             GUI.enabled = true;
