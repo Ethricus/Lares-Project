@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e231d10411d4e4cb325936960a0a98, type: 3}
+  m_Name: ScriptableInventory
+  m_EditorClassIdentifier: 
+  ItemList:
+  - rid: 6271435567008317521
+  - rid: 6271435567008317522
+  references:
+    version: 2
+    RefIds:
+    - rid: 6271435567008317521
+      type: {class: HealthPotion, ns: Lares.Inventory, asm: Assembly-CSharp}
+      data:
+        ItemData:
+          ItemID: b5d1fae7-c13e-4bac-adf0-7535fa324f3c
+          itemName: 
+          itemDescription: 
+          itemImage: {fileID: 0}
+        HealthPotionParameterTest: 97
+    - rid: 6271435567008317522
+      type: {class: MagicPotion, ns: Lares.Inventory, asm: Assembly-CSharp}
+      data:
+        ItemData:
+          ItemID: dad70cf1-f5c9-4c26-863a-c103b327d143
+          itemName: 
+          itemDescription: 
+          itemImage: {fileID: 0}
+        MagicPotionParameterTest: 1
