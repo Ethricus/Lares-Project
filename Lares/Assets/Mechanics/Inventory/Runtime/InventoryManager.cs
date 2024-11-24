@@ -8,15 +8,15 @@ namespace Lares.Inventory
     public class InventoryManager : MonoBehaviour
     {
         public GameObject PlayerReference;
-        public List<InventoryNode> InventoryData { get; private set; }
+        public List<InventoryNode> InventoryData;
         public ScriptableInventory InventoryList;
 
         public bool IsInInventory(Guid id) => InventoryData.Any(i => new Guid(i.Item.ItemData.ItemId) == id);
         public bool IsValidID(Guid id) => InventoryList.ItemList.Any(i => new Guid(i.ItemData.ItemId) == id);
         public InventoryItem GetInventoryItemById(Guid id) => InventoryList.ItemList.Find(i => new Guid(i.ItemData.ItemId) == id);
 
-        void Start()
-        {
+        private void OnEnable()
+        { 
             if (InventoryList.ItemList.Count == 0) { Debug.Log("InventoryList is empty!"); }
             InventoryData = new();
             AddToInventory(new Guid(InventoryList.ItemList[0].ItemData.ItemId), 3);

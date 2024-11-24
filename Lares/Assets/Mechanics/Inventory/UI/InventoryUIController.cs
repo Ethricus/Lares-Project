@@ -84,8 +84,7 @@ namespace Lares.Inventory
         {
             _inventoryList = new List<InventoryNode>();
             _inventoryList = _inventory.InventoryData;
-            Transform consumableContentHolder = _consumableScrollView.GetComponent<ScrollRect>().content.transform;
-
+            
             GameObject temp;
             foreach (InventoryNode item in _inventoryList)
             {
@@ -94,15 +93,15 @@ namespace Lares.Inventory
 
                 if (item.Item is IConsumable)
                 {
-                    temp.transform.SetParent(consumableContentHolder);
+                    temp.transform.SetParent(_consumableContentHolder);
                 }
                 else if (item.Item is IMaterial)
                 {
-                    temp.transform.SetParent(_materialScrollView);
+                    temp.transform.SetParent(_materialContentHolder);
                 }
                 else if (item.Item is IKey)
                 {
-                    temp.transform.SetParent(_keyScrollView);
+                    temp.transform.SetParent(_keyContentHolder);
                 }
             }
         }
