@@ -7,7 +7,7 @@ namespace Lares.Inventory
         [SerializeField] private int _percentageIncrease;
         public override void OnUse(GameObject playerRef)
         {
-            Debug.Log("Health potion used");
+            Debug.Log("Health potion used " + _percentageIncrease);
         }
     }
 

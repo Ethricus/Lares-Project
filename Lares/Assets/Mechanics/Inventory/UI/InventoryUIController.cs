@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Rendering;
+using UnityEngine.Events;
 
 namespace Lares.Inventory
 {
@@ -28,12 +29,14 @@ namespace Lares.Inventory
         [SerializeField] private Button _keyButton;
 
         private InventoryNode _currentInventoryNode = null;
+        private static UnityAction _onUseEvent;
 
         private void Start()
         {
             LoadInventory();
             InventoryItemButton.ItemSelected += SetCurrentSelected;
-            
+            _onUseEvent = new UnityAction(() => { CallOnUseFunction(); });
+            _OnUseButton.onClick.AddListener(_onUseEvent);
         }
 
         private void SetCurrentSelected(InventoryNode item)
@@ -41,6 +44,12 @@ namespace Lares.Inventory
             _currentInventoryNode = item;
             _itemName.text = item.Item.ItemData.ItemName;
             _itemDescriptionText.text = item.Item.ItemData.ItemDescription;
+        }
+
+        private void CallOnUseFunction()
+        {
+            Debug.Log("On Use button clicked");
+            _currentInventoryNode.Item.OnUse(_inventory.PlayerReference);
         }
 
         void LoadInventory()
@@ -83,11 +92,6 @@ namespace Lares.Inventory
             {
                 Destroy(_keyContentContainers.GetChild(i).gameObject);
             }
-        }
-
-        public void UpdateItemText(string newName, string newText)
-        {
-            
         }
     }
 }
