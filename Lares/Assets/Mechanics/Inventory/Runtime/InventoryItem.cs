@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Lares.Inventory
@@ -12,22 +11,18 @@ namespace Lares.Inventory
         [ObjectID] public string ItemId;
         public string ItemName;
         public string ItemDescription;
-        public UnityEngine.UI.Image ItemImage;
-    }
-
-    public interface IItem
-    {
-        public void OnUse();
+        public Sprite ItemImage;
     }
 
     [Serializable]
     public class InventoryItem : IItem
     {
         public InventoryData ItemData;
-        public virtual void OnUse() { return; }
+        
+        public virtual void OnUse(GameObject playerRef) { return; }
 
-        public static bool operator == (InventoryItem a, InventoryItem b) { return a.ItemData.ItemId == b.ItemData.ItemId; }
-        public static bool operator != (InventoryItem a, InventoryItem b) { return a.ItemData.ItemId != b.ItemData.ItemId; }
+        public static bool operator ==(InventoryItem a, InventoryItem b) { return a.ItemData.ItemId == b.ItemData.ItemId; }
+        public static bool operator !=(InventoryItem a, InventoryItem b) { return a.ItemData.ItemId != b.ItemData.ItemId; }
 
         public override bool Equals(System.Object obj)
         {
@@ -37,20 +32,5 @@ namespace Lares.Inventory
         }
 
         public override int GetHashCode() { return ItemData.GetHashCode(); }
-    }
-
-    public class HealthPotion : InventoryItem
-    {
-        [SerializeField] private int _healthPotionParameterTest;
-        public override void OnUse()
-        {
-            Debug.Log("Health potion used");
-        }
-    }
-
-    public class MagicPotion : InventoryItem
-    {
-        [SerializeField] private int _magicPotionParameterTest;
-        public override void OnUse() { Debug.Log("Magic Potion used!"); }
     }
 }

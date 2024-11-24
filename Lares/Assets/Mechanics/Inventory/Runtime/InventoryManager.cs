@@ -1,39 +1,40 @@
-using NUnit.Framework;
 using System;
-using UnityEngine;
 using System.Collections.Generic;
-using TMPro;
-using System.Diagnostics.Tracing;
 using System.Linq;
+using UnityEditor;
+using UnityEngine;
 
 namespace Lares.Inventory
 {
     public class InventoryManager : MonoBehaviour
     {
-        public List<InventoryNode> InventoryData  { get; private set; }
-        [SerializeField] private ScriptableInventory _inventoryList;
+        public GameObject PlayerReference;
+        public List<InventoryNode> InventoryData { get; private set; }
+        public ScriptableInventory InventoryList;
 
         public bool IsInInventory(Guid id) => InventoryData.Any(i => new Guid(i.Item.ItemData.ItemId) == id);
-        public bool IsValidID(Guid id) => _inventoryList.ItemList.Any(i => new Guid(i.ItemData.ItemId) == id);
-        public InventoryItem GetInventoryItemById(Guid id) => _inventoryList.ItemList.Find(i => new Guid(i.ItemData.ItemId) == id);
-
+        public bool IsValidID(Guid id) => InventoryList.ItemList.Any(i => new Guid(i.ItemData.ItemId) == id);
+        public InventoryItem GetInventoryItemById(Guid id) => InventoryList.ItemList.Find(i => new Guid(i.ItemData.ItemId) == id);
 
         void Start()
         {
+            if (InventoryList.ItemList.Count == 0) { Debug.Log("InventoryList is empty!"); }
             InventoryData = new();
+            AddToInventory(new Guid(InventoryList.ItemList[0].ItemData.ItemId), 3);
+            AddToInventory(new Guid(InventoryList.ItemList[1].ItemData.ItemId));
         }
 
         public bool AddToInventory(Guid id, int count)
         {
             if (IsInInventory(id))
             {
-                InventoryData.Find(i => new Guid(i.Item.ItemData.ItemId) == id).ItemCount+= count;
+                InventoryData.Find(i => new Guid(i.Item.ItemData.ItemId) == id).ItemCount += count;
                 return true;
             }
 
             if (!IsValidID(id)) { return false; }
 
-            InventoryData.Add(new InventoryNode(GetInventoryItemById(id), 1));
+            InventoryData.Add(new InventoryNode(GetInventoryItemById(id), count));
             return true;
         }
 
@@ -46,9 +47,9 @@ namespace Lares.Inventory
             else if (item.ItemCount - count < 0) { return false; }
 
             item.ItemCount -= count;
-            if (item.ItemCount == 0) 
+            if (item.ItemCount == 0)
                 InventoryData.Remove(item);
-            
+
             return true;
         }
 
