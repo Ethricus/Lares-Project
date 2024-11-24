@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine.Rendering;
 using UnityEngine.Events;
 
 namespace Lares.Inventory
@@ -12,31 +11,60 @@ namespace Lares.Inventory
         [SerializeField] private InventoryManager _inventory;
         private List<InventoryNode> _inventoryList;
 
-        [Header("Content Containers")]
-        [SerializeField] private Transform _consumableContentContainer;
-        [SerializeField] private Transform _materialContentContainer;
-        [SerializeField] private Transform _keyContentContainers;
+        [Header("Scroll views")]
+        [SerializeField] private Transform _consumableScrollView;
+        private Transform _consumableContentHolder;
+        [SerializeField] private Transform _materialScrollView;
+        private Transform _materialContentHolder;
+        [SerializeField] private Transform _keyScrollView;
+        private Transform _keyContentHolder;
 
         [Header ("Inventory Data")]
         [SerializeField] private TextMeshProUGUI _itemName;
         [SerializeField] private TextMeshProUGUI _itemDescriptionText;
 
         [Header("Buttons")]
-        [SerializeField] private GameObject _InventoryItemButtonPrefab;
-        [SerializeField] private Button _OnUseButton;
-        [SerializeField] private Button _recoveryButton;
+        [SerializeField] private GameObject _inventoryItemButtonPrefab;
+        [SerializeField] private Button _onUseButton;
+        [SerializeField] private Button _consumableButton;
         [SerializeField] private Button _materialsButton;
         [SerializeField] private Button _keyButton;
 
         private InventoryNode _currentInventoryNode = null;
-        private static UnityAction _onUseEvent;
 
         private void Start()
         {
-            LoadInventory();
             InventoryItemButton.ItemSelected += SetCurrentSelected;
-            _onUseEvent = new UnityAction(() => { CallOnUseFunction(); });
-            _OnUseButton.onClick.AddListener(_onUseEvent);
+            _onUseButton.onClick.AddListener(() => { CallOnUseFunction(); });
+            _consumableButton.onClick.AddListener(() => { SetToConsumableView(); });
+            _materialsButton.onClick.AddListener(() => { SetToMaterialView(); });
+            _keyButton.onClick.AddListener(() => { SetToKeyView(); });
+            _consumableContentHolder = _consumableScrollView.GetComponent<ScrollRect>().content.transform;
+            _materialContentHolder = _materialScrollView.GetComponent<ScrollRect>().content.transform;
+            _keyContentHolder = _keyScrollView.GetComponent<ScrollRect>().content.transform;
+
+            LoadInventory();
+        }
+
+        private void SetToConsumableView()
+        {
+            _consumableScrollView.gameObject.SetActive(true);
+            _materialScrollView.gameObject.SetActive(false);
+            _keyScrollView.gameObject.SetActive(false);
+        }
+
+        private void SetToMaterialView()
+        {
+            _consumableScrollView.gameObject.SetActive(false);
+            _materialScrollView.gameObject.SetActive(true);
+            _keyScrollView.gameObject.SetActive(false);
+        }
+
+        private void SetToKeyView()
+        {
+            _consumableScrollView.gameObject.SetActive(false);
+            _materialScrollView.gameObject.SetActive(false);
+            _keyScrollView.gameObject.SetActive(true);
         }
 
         private void SetCurrentSelected(InventoryNode item)
@@ -56,41 +84,42 @@ namespace Lares.Inventory
         {
             _inventoryList = new List<InventoryNode>();
             _inventoryList = _inventory.InventoryData;
+            Transform consumableContentHolder = _consumableScrollView.GetComponent<ScrollRect>().content.transform;
 
             GameObject temp;
             foreach (InventoryNode item in _inventoryList)
             {
-                temp = Instantiate(_InventoryItemButtonPrefab);
+                temp = Instantiate(_inventoryItemButtonPrefab);
                 temp.GetComponent<InventoryItemButton>().ItemData = item;
 
                 if (item.Item is IConsumable)
                 {
-                    temp.transform.SetParent(_consumableContentContainer);
+                    temp.transform.SetParent(consumableContentHolder);
                 }
                 else if (item.Item is IMaterial)
                 {
-                    temp.transform.SetParent(_materialContentContainer);
+                    temp.transform.SetParent(_materialScrollView);
                 }
                 else if (item.Item is IKey)
                 {
-                    temp.transform.SetParent(_keyContentContainers);
+                    temp.transform.SetParent(_keyScrollView);
                 }
             }
         }
 
         private void ClearInventory()
         {
-            for (int i = 0; i < _consumableContentContainer.childCount; i++)
+            for (int i = 0; i < _consumableScrollView.childCount; i++)
             {
-                Destroy(_consumableContentContainer.GetChild(i).gameObject);
+                Destroy(_consumableScrollView.GetChild(i).gameObject);
             }
-            for (int i = 0; i < _materialContentContainer.childCount; i++)
+            for (int i = 0; i < _materialScrollView.childCount; i++)
             {
-                Destroy(_materialContentContainer.GetChild(i).gameObject);
+                Destroy(_materialScrollView.GetChild(i).gameObject);
             }
-            for (int i = 0; i < _keyContentContainers.childCount; i++)
+            for (int i = 0; i < _keyScrollView.childCount; i++)
             {
-                Destroy(_keyContentContainers.GetChild(i).gameObject);
+                Destroy(_keyScrollView.GetChild(i).gameObject);
             }
         }
     }

@@ -151,9 +151,6 @@ MonoBehaviour:
   _InventoryItemButtonPrefab: {fileID: 30322800902569082, guid: 0d307af366fe27046850d050f69c73ba,
     type: 3}
   _OnUseButton: {fileID: 0}
-  _recoveryButton: {fileID: 0}
-  _materialsButton: {fileID: 0}
-  _keyButton: {fileID: 0}
 --- !u!1 &688415461097339919
 GameObject:
   m_ObjectHideFlags: 0
