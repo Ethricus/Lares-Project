@@ -18,12 +18,12 @@ namespace Lares.Inventory
         private void OnEnable()
         { 
             if (InventoryList.ItemList.Count == 0) { Debug.Log("InventoryList is empty!"); }
-            InventoryData = new();
+            InventoryData = new List<InventoryNode>();
             AddToInventory(new Guid(InventoryList.ItemList[0].ItemData.ItemId), 3);
             AddToInventory(new Guid(InventoryList.ItemList[1].ItemData.ItemId));
         }
 
-        public bool AddToInventory(Guid id, int count)
+        public bool AddToInventory(Guid id, int count = 1)
         {
             if (IsInInventory(id))
             {
@@ -37,28 +37,22 @@ namespace Lares.Inventory
             return true;
         }
 
-        public bool AddToInventory(Guid id) { return AddToInventory(id, 1); }
-
-        public bool RemoveFromInventory(Guid id, int count)
+        public bool RemoveFromInventory(Guid id, int count = 1)
         {
             InventoryNode item = InventoryData.Find(i => new Guid(i.Item.ItemData.ItemId) == id);
-            if (item != null) { return false; }
-            else if (item.ItemCount - count < 0) { return false; }
-
+            if (item is null) { return false; }
+            
             item.ItemCount -= count;
-            if (item.ItemCount == 0)
+            if (item.ItemCount <= 0)
                 InventoryData.Remove(item);
 
             return true;
         }
 
-        public bool RemoveFromInventory(Guid id) { return RemoveFromInventory(id, 1); }
-
         public int GetItemCountInInventory(Guid id)
         {
             InventoryNode item = InventoryData.Find(i => new Guid(i.Item.ItemData.ItemId) == id);
-            if (item == null) return 0;
-            return item.ItemCount;
+            return item?.ItemCount ?? 0;
         }
     }
 
@@ -67,10 +61,10 @@ namespace Lares.Inventory
         public InventoryItem Item;
         public int ItemCount;
 
-        public InventoryNode(InventoryItem _item, int _count)
+        public InventoryNode(InventoryItem item, int count)
         {
-            Item = _item;
-            ItemCount = _count;
+            Item = item;
+            ItemCount = count;
         }
     }
 }

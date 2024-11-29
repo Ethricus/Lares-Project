@@ -22,7 +22,7 @@ namespace Lares.Inventory
 
     public class PhysicalAttackConsumable : InventoryItem, IConsumable
     {
-        [SerializeField] private int _PAtkModifier;
+        [SerializeField] private int _physAtkModifier;
         [SerializeField] private float _timeInEffect;
 
         public override void OnUse(GameObject playerRef)
@@ -33,7 +33,7 @@ namespace Lares.Inventory
 
     public class PhysicalDefenseConsumable : InventoryItem, IConsumable
     {
-        [SerializeField] private int _PDefModifier;
+        [SerializeField] private int _physDefModifier;
         [SerializeField] private float _timeInEffect;
 
         public override void OnUse(GameObject playerRef)
@@ -44,7 +44,7 @@ namespace Lares.Inventory
 
     public class MagicAttackConsumable : InventoryItem, IConsumable
     {
-        [SerializeField] private int _SAtkModifier;
+        [SerializeField] private int _seriAtkModifier;
         [SerializeField] private float _timeInEffect;
 
         public override void OnUse(GameObject playerRef)
@@ -55,7 +55,7 @@ namespace Lares.Inventory
 
     public class MagicDefenseConsumable : InventoryItem, IConsumable
     {
-        [SerializeField] private int _SDefModifier;
+        [SerializeField] private int _seriDefModifier;
         [SerializeField] private float _timeInEffect;
         public override void OnUse(GameObject playerRef)
         {
@@ -65,7 +65,7 @@ namespace Lares.Inventory
 
     public class AgilityConsumable : InventoryItem, IConsumable
     {
-        [SerializeField] private int _AgilityModifier;
+        [SerializeField] private int _agilityModifier;
         [SerializeField] private float _timeInEffect;
         public override void OnUse(GameObject playerRef)
         {
@@ -75,7 +75,7 @@ namespace Lares.Inventory
 
     public class LuckConsumable : InventoryItem, IConsumable
     {
-        [SerializeField] private int _LuckModifier;
+        [SerializeField] private int _luckModifier;
         [SerializeField] private float _timeInEffect;
         public override void OnUse(GameObject playerRef)
         {

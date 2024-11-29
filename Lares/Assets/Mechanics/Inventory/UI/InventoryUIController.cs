@@ -11,7 +11,7 @@ namespace Lares.Inventory
         [SerializeField] private InventoryManager _inventory;
         private List<InventoryNode> _inventoryList;
 
-        [Header("Scroll views")]
+        [Header("Scroll Views")]
         [SerializeField] private Transform _consumableScrollView;
         private Transform _consumableContentHolder;
         [SerializeField] private Transform _materialScrollView;
@@ -35,10 +35,10 @@ namespace Lares.Inventory
         private void Start()
         {
             InventoryItemButton.ItemSelected += SetCurrentSelected;
-            _onUseButton.onClick.AddListener(() => { CallOnUseFunction(); });
-            _consumableButton.onClick.AddListener(() => { SetToConsumableView(); });
-            _materialsButton.onClick.AddListener(() => { SetToMaterialView(); });
-            _keyButton.onClick.AddListener(() => { SetToKeyView(); });
+            _onUseButton.onClick.AddListener(CallOnUseFunction);
+            _consumableButton.onClick.AddListener(SetToConsumableView) ;
+            _materialsButton.onClick.AddListener(SetToMaterialView);
+            _keyButton.onClick.AddListener(SetToKeyView);
             _consumableContentHolder = _consumableScrollView.GetComponent<ScrollRect>().content.transform;
             _materialContentHolder = _materialScrollView.GetComponent<ScrollRect>().content.transform;
             _keyContentHolder = _keyScrollView.GetComponent<ScrollRect>().content.transform;
@@ -82,7 +82,6 @@ namespace Lares.Inventory
 
         void LoadInventory()
         {
-            _inventoryList = new List<InventoryNode>();
             _inventoryList = _inventory.InventoryData;
             
             GameObject temp;
@@ -91,17 +90,17 @@ namespace Lares.Inventory
                 temp = Instantiate(_inventoryItemButtonPrefab);
                 temp.GetComponent<InventoryItemButton>().ItemData = item;
 
-                if (item.Item is IConsumable)
+                switch (item.Item)
                 {
-                    temp.transform.SetParent(_consumableContentHolder);
-                }
-                else if (item.Item is IMaterial)
-                {
-                    temp.transform.SetParent(_materialContentHolder);
-                }
-                else if (item.Item is IKey)
-                {
-                    temp.transform.SetParent(_keyContentHolder);
+                    case IConsumable:
+                        temp.transform.SetParent(_consumableContentHolder);
+                        break;
+                    case IMaterial:
+                        temp.transform.SetParent(_materialContentHolder);
+                        break;
+                    case IKey:
+                        temp.transform.SetParent(_keyContentHolder);
+                        break;
                 }
             }
         }

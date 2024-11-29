@@ -24,11 +24,10 @@ namespace Lares.Inventory
         public static bool operator ==(InventoryItem a, InventoryItem b) { return a.ItemData.ItemId == b.ItemData.ItemId; }
         public static bool operator !=(InventoryItem a, InventoryItem b) { return a.ItemData.ItemId != b.ItemData.ItemId; }
 
-        public override bool Equals(System.Object obj)
+        public override bool Equals(object obj)
         {
-            if (obj == null) return false;
-            if (!(obj is InventoryItem)) return false;
-            return ItemData.ItemId == (obj as InventoryItem).ItemData.ItemId;
+            if (obj is null or not InventoryItem) return false;
+            return ItemData.ItemId == ((InventoryItem)obj).ItemData.ItemId;
         }
 
         public override int GetHashCode() { return ItemData.GetHashCode(); }
