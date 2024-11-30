@@ -21,18 +21,16 @@ MonoBehaviour:
     - rid: 8634588512548028483
       type: {class: HealthConsumable, ns: Lares.Inventory, asm: Assembly-CSharp}
       data:
-        ItemData:
-          ItemId: cd2e2de6-53be-4bef-9241-d61fe2eb3816
-          ItemName: test 1
-          ItemDescription: 'This is a health potion '
-          ItemImage: {fileID: 0}
+        ItemId: 07b0b7fb-1b79-46aa-88f9-9e6d788b1002
+        ItemName: hfghfgh
+        ItemDescription: hfdhghfhdg
+        ItemImage: {fileID: 0}
         _percentageIncrease: 20
     - rid: 8634588512548028484
       type: {class: MagicConsumable, ns: Lares.Inventory, asm: Assembly-CSharp}
       data:
-        ItemData:
-          ItemId: dcca8b5c-b7e3-4dd4-a630-21765190f600
-          ItemName: test 2
-          ItemDescription: This is a magic potion
-          ItemImage: {fileID: 0}
+        ItemId: 52fda2c0-1f73-4e76-ab98-4d597f28503f
+        ItemName: gfhdhgfhgh
+        ItemDescription: gfhdfhhgfd
+        ItemImage: {fileID: 0}
         _percentageIncrease: 40

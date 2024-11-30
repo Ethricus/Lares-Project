@@ -17,7 +17,7 @@ namespace Lares.Inventory
         void Start()
         {
             if (ItemData is null) { Debug.Log("item data is null!"); }
-            _itemName.text = ItemData.Item.ItemData.ItemName;
+            _itemName.text = ItemData.Item.ItemName;
             _numberText.text = ItemData.ItemCount.ToString();
         }
 

@@ -70,8 +70,8 @@ namespace Lares.Inventory
         private void SetCurrentSelected(InventoryNode item)
         {
             _currentInventoryNode = item;
-            _itemName.text = item.Item.ItemData.ItemName;
-            _itemDescriptionText.text = item.Item.ItemData.ItemDescription;
+            _itemName.text = item.Item.ItemName;
+            _itemDescriptionText.text = item.Item.ItemDescription;
         }
 
         private void CallOnUseFunction()

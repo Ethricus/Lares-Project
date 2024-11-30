@@ -11,23 +11,23 @@ namespace Lares.Inventory
         public List<InventoryNode> InventoryData;
         public ScriptableInventory InventoryList;
 
-        public bool IsInInventory(Guid id) => InventoryData.Any(i => new Guid(i.Item.ItemData.ItemId) == id);
-        public bool IsValidID(Guid id) => InventoryList.ItemList.Any(i => new Guid(i.ItemData.ItemId) == id);
-        public InventoryItem GetInventoryItemById(Guid id) => InventoryList.ItemList.Find(i => new Guid(i.ItemData.ItemId) == id);
+        public bool IsInInventory(Guid id) => InventoryData.Any(i => new Guid(i.Item.ItemId) == id);
+        public bool IsValidID(Guid id) => InventoryList.ItemList.Any(i => new Guid(i.ItemId) == id);
+        public InventoryItem GetInventoryItemById(Guid id) => InventoryList.ItemList.Find(i => new Guid(i.ItemId) == id);
 
         private void OnEnable()
         { 
             if (InventoryList.ItemList.Count == 0) { Debug.Log("InventoryList is empty!"); }
             InventoryData = new List<InventoryNode>();
-            AddToInventory(new Guid(InventoryList.ItemList[0].ItemData.ItemId), 3);
-            AddToInventory(new Guid(InventoryList.ItemList[1].ItemData.ItemId));
+            AddToInventory(new Guid(InventoryList.ItemList[0].ItemId), 3);
+            AddToInventory(new Guid(InventoryList.ItemList[1].ItemId));
         }
 
         public bool AddToInventory(Guid id, int count = 1)
         {
             if (IsInInventory(id))
             {
-                InventoryData.Find(i => new Guid(i.Item.ItemData.ItemId) == id).ItemCount += count;
+                InventoryData.Find(i => new Guid(i.Item.ItemId) == id).ItemCount += count;
                 return true;
             }
 
@@ -39,7 +39,7 @@ namespace Lares.Inventory
 
         public bool RemoveFromInventory(Guid id, int count = 1)
         {
-            InventoryNode item = InventoryData.Find(i => new Guid(i.Item.ItemData.ItemId) == id);
+            InventoryNode item = InventoryData.Find(i => new Guid(i.Item.ItemId) == id);
             if (item is null) { return false; }
             
             item.ItemCount -= count;
@@ -51,7 +51,7 @@ namespace Lares.Inventory
 
         public int GetItemCountInInventory(Guid id)
         {
-            InventoryNode item = InventoryData.Find(i => new Guid(i.Item.ItemData.ItemId) == id);
+            InventoryNode item = InventoryData.Find(i => new Guid(i.Item.ItemId) == id);
             return item?.ItemCount ?? 0;
         }
     }
