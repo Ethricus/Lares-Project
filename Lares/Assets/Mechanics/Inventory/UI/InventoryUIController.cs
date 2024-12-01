@@ -1,8 +1,7 @@
-using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine.Events;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Mechanics.Inventory
 {
@@ -19,7 +18,7 @@ namespace Mechanics.Inventory
         [SerializeField] private Transform _keyScrollView;
         private Transform _keyContentHolder;
 
-        [Header ("Inventory Data")]
+        [Header("Inventory Data")]
         [SerializeField] private TextMeshProUGUI _itemName;
         [SerializeField] private TextMeshProUGUI _itemDescriptionText;
 
@@ -36,7 +35,7 @@ namespace Mechanics.Inventory
         {
             InventoryItemButton.ItemSelected += SetCurrentSelected;
             _onUseButton.onClick.AddListener(CallOnUseFunction);
-            _consumableButton.onClick.AddListener(SetToConsumableView) ;
+            _consumableButton.onClick.AddListener(SetToConsumableView);
             _materialsButton.onClick.AddListener(SetToMaterialView);
             _keyButton.onClick.AddListener(SetToKeyView);
             _consumableContentHolder = _consumableScrollView.GetComponent<ScrollRect>().content.transform;
@@ -83,7 +82,7 @@ namespace Mechanics.Inventory
         void LoadInventory()
         {
             _inventoryList = _inventory.InventoryData;
-            
+
             GameObject temp;
             foreach (InventoryNode item in _inventoryList)
             {

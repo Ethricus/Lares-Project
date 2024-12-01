@@ -16,7 +16,7 @@ namespace Mechanics.Inventory
         public InventoryItem GetInventoryItemById(Guid id) => InventoryList.ItemList.Find(i => new Guid(i.ItemId) == id);
 
         private void OnEnable()
-        { 
+        {
             if (InventoryList.ItemList.Count == 0) { Debug.Log("InventoryList is empty!"); }
             InventoryData = new List<InventoryNode>();
             AddToInventory(new Guid(InventoryList.ItemList[0].ItemId), 3);
@@ -41,7 +41,7 @@ namespace Mechanics.Inventory
         {
             InventoryNode item = InventoryData.Find(i => new Guid(i.Item.ItemId) == id);
             if (item is null) { return false; }
-            
+
             item.ItemCount -= count;
             if (item.ItemCount <= 0)
                 InventoryData.Remove(item);

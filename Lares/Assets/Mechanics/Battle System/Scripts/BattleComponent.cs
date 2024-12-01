@@ -1,9 +1,7 @@
 using Mechanics.Inventory;
-using Unity.IO.LowLevel.Unsafe;
-using Unity.VisualScripting;
-using UnityEngine;
 using System.Collections.Generic;
-using System;
+using UnityEditor.Rendering;
+using UnityEngine;
 
 namespace Mechanics.BattleSystem
 {
@@ -16,14 +14,55 @@ namespace Mechanics.BattleSystem
         public int Level { get; private set; }
         public int EXP;
         private float _modifierEXPGain;
-        
-        public int HP { get; private set; }
+
+        public int HP 
+        {
+            get => _currentHP; 
+            private set
+            {
+                if (value > MaxHP)
+                {
+                    _currentHP = MaxHP;
+                }
+                else if (value < 0)
+                {
+                    Death?.Invoke();
+                    _currentHP = 0;
+                }
+                else
+                {
+                    _currentHP = value;
+                }
+            }
+        }
+
         public int MaxHP { get; private set; }
+        private int _currentHP;
         private int _baseMaxHP;
         private float _modifierMaxHP;
 
-        public int SP { get; private set; }
+        public int SP 
+        {
+            get => _currentSP;
+             
+            private set
+            {
+                if (value > MaxSP)
+                {
+                    _currentSP = MaxSP;
+                }
+                else if (value <= 0)
+                {
+                    _currentSP = 0;
+                }
+                else
+                {
+                    _currentSP = value;
+                }
+            }
+        }
         public int MaxSP { get; private set; }
+        private int _currentSP;
         private int _baseMaxSP;
         private float _modifierMaxSP;
 
@@ -67,18 +106,14 @@ namespace Mechanics.BattleSystem
         private int _baseSAtkCritMod;
         private float _modifierSAtkCritMod;
 
-        public System.Action Death;
-
-        public bool HealHP(int restore) { return true; }
-
-        public bool HealSP(int increase) { return true; }
+        public System.Action Death; 
 
         /// <summary>
         /// When a NPC has got enough EXP to level up, stat increases will be done here, base values are used to calcalate adjustment
         /// </summary>
         private void LevelUp()
         {
-            //logarithmic
+            //rate of stat increase is logarithmic
         }
 
         /// <summary>
@@ -87,30 +122,30 @@ namespace Mechanics.BattleSystem
         /// <param name="battleStats"></param>
         public void CalculateEXP(BattleStats battleStats)
         {
-            
-                 
-        }  
+            // exp needed to level up is exponential
+
+        }
 
         public bool ImplementAttack(Attack attack)
         {
             GameObject.Instantiate(attack.attackPrefab);
-            //make AttackInfo and instantiate attack object 
+            AttackInfo attackInfo = new AttackInfo(this, attack); 
             return false;
         }
 
-        public void AddAccessory(Accessory accessory) 
-        { 
+        public void AddAccessory(Accessory accessory)
+        {
             EquippedAccessories.Add(accessory);
             AddModiferValues(accessory);
         }
 
-        public void RemoveAccessory(Accessory accessory) 
+        public void RemoveAccessory(Accessory accessory)
         {
             EquippedAccessories.Remove(accessory);
             RemoveModifierValues(accessory);
         }
 
-        public void EquipWeapon(Weapon weapon) 
+        public void EquipWeapon(Weapon weapon)
         {
             if (weapon == EquippedWeapon || weapon is null) return;
             EquippedWeapon?.OnRemove();
@@ -132,7 +167,7 @@ namespace Mechanics.BattleSystem
             _modifierLuck += equippableItem.LuckModifier;
             _modifierPAtkCritMod += equippableItem.PAtkModifier;
             _modifierSAtkCritMod += equippableItem.PAtkCritModifier;
-        } 
+        }
 
         private void RemoveModifierValues(Equippable equippableItem)
         {
@@ -147,12 +182,12 @@ namespace Mechanics.BattleSystem
             _modifierLuck -= equippableItem.LuckModifier;
             _modifierPAtkCritMod -= equippableItem.PAtkModifier;
             _modifierSAtkCritMod -= equippableItem.PAtkCritModifier;
-        } 
+        }
 
         private void OnCollisionEnter(Collision collision)
         {
             //check if damage collision
             //if damage collision then calcaulte damage in battle calcualtions.
         }
-    } 
+    }
 }

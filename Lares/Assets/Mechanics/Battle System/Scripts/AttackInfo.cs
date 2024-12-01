@@ -1,4 +1,3 @@
-using Mechanics.BattleSystem;
 using UnityEngine;
 
 namespace Mechanics.BattleSystem
@@ -9,7 +8,7 @@ namespace Mechanics.BattleSystem
         public int AttackValue;
         public int AttackPower;
         public bool Crit;
-        public float AttackCritMod;
+        public float AttackCritMod; 
 
         public AttackInfo(BattleComponent other, Attack attack)
         {
