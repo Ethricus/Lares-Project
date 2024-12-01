@@ -1,14 +1,7 @@
 fileFormatVersion: 2
 guid: e106d7af910bbc9428f309b0563156ba
-AssetOrigin:
-  serializedVersion: 1
-  productId: 246775
-  packageName: WindHaven - Stylised Fantasy Town - URP
-  packageVersion: 1.0
-  assetPath: Assets/PrinceCreates/WindHaven/03_MESHES/A_Architecture/A_Addon_Helix_A_MovingPart.FBX
-  uploadId: 595770
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 21300
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -23,6 +16,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -41,11 +36,10 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 2
+    meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
-    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -73,7 +67,6 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -106,9 +99,15 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 246775
+  packageName: WindHaven - Stylised Fantasy Town - URP
+  packageVersion: 1.0
+  assetPath: Assets/PrinceCreates/WindHaven/03_MESHES/A_Architecture/A_Addon_Helix_A_MovingPart.FBX
+  uploadId: 595770
