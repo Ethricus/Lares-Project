@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace Lares.Inventory
+namespace Mechanics.Inventory
 {
     [CustomEditor(typeof(ScriptableInventory))]
     public class InventoryDatabaseGUI : Editor

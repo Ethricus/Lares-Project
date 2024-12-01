@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Lares.Inventory
+namespace Mechanics.Inventory
 {
     public class InventoryManager : MonoBehaviour
     {

@@ -1,10 +1,10 @@
-using Lares.Inventory;
+ 
 using NUnit.Framework.Interfaces;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Lares.Inventory
+namespace Mechanics.Inventory
 {
     public class InventoryItemButton : MonoBehaviour, IPointerEnterHandler
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Lares.Inventory
+namespace Mechanics.Inventory
 {
     [CreateAssetMenu(fileName = "InventoryDatabase", menuName = "Scriptable Objects/InventoryDatabase")]
     public class ScriptableInventory : ScriptableObject

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Lares.Inventory
+namespace Mechanics.Inventory
 {
     public class ObjectID : PropertyAttribute { }
 

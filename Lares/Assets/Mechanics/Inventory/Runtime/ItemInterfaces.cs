@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Lares.Inventory
+namespace Mechanics.Inventory
 {
     public interface IItem { public void OnUse(GameObject playerRef); }
     public interface IConsumable : IItem { }

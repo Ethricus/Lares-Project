@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Events;
 
-namespace Lares.Inventory
+namespace Mechanics.Inventory
 {
     public class InventoryUIController : MonoBehaviour
     {

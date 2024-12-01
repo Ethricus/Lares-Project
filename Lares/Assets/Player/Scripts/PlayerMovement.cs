@@ -122,10 +122,10 @@ namespace Lares.Player.Scripts
         {
         }
 
-        private void PerformAttack(AttackData attackData)
-        {
+        //private void PerformAttack(AttackData attackData)
+        //{
 
-        }
+        //}
         #endregion
 
         private void Interact(InputAction.CallbackContext context)
