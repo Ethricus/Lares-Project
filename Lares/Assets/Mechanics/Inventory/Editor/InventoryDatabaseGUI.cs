@@ -1,7 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -50,7 +50,7 @@ namespace Lares.Inventory
         /// Gets all classes inheriting from InventoryItem using reflection and adds them to a list of types and list of names
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public void SetArrayOfTypes<T> () where T : InventoryItem
+        public void SetArrayOfTypes<T>() where T : InventoryItem
         {
             List<string> classNameList = new();
             List<Type> classTypeList = new();
@@ -69,7 +69,7 @@ namespace Lares.Inventory
     /// Sets an Integer ID if one does not previously exist. Sets the field to read only.
     /// </summary>
     [CustomPropertyDrawer(typeof(ObjectID))]
-    public class ObjectIDDrawer : PropertyDrawer 
+    public class ObjectIDDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {

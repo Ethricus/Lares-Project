@@ -13,26 +13,24 @@ MonoBehaviour:
   m_Name: ScriptableInventory
   m_EditorClassIdentifier: 
   ItemList:
-  - rid: 6271435567008317521
-  - rid: 6271435567008317522
+  - rid: 8634588512548028483
+  - rid: 8634588512548028484
   references:
     version: 2
     RefIds:
-    - rid: 6271435567008317521
-      type: {class: HealthPotion, ns: Lares.Inventory, asm: Assembly-CSharp}
+    - rid: 8634588512548028483
+      type: {class: HealthConsumable, ns: Lares.Inventory, asm: Assembly-CSharp}
       data:
-        ItemData:
-          ItemID: b5d1fae7-c13e-4bac-adf0-7535fa324f3c
-          itemName: 
-          itemDescription: 
-          itemImage: {fileID: 0}
-        HealthPotionParameterTest: 97
-    - rid: 6271435567008317522
-      type: {class: MagicPotion, ns: Lares.Inventory, asm: Assembly-CSharp}
+        ItemId: 07b0b7fb-1b79-46aa-88f9-9e6d788b1002
+        ItemName: hfghfgh
+        ItemDescription: hfdhghfhdg
+        ItemImage: {fileID: 0}
+        _percentageIncrease: 20
+    - rid: 8634588512548028484
+      type: {class: MagicConsumable, ns: Lares.Inventory, asm: Assembly-CSharp}
       data:
-        ItemData:
-          ItemID: dad70cf1-f5c9-4c26-863a-c103b327d143
-          itemName: 
-          itemDescription: 
-          itemImage: {fileID: 0}
-        MagicPotionParameterTest: 1
+        ItemId: 52fda2c0-1f73-4e76-ab98-4d597f28503f
+        ItemName: gfhdhgfhgh
+        ItemDescription: gfhdfhhgfd
+        ItemImage: {fileID: 0}
+        _percentageIncrease: 40
